@@ -1,5 +1,4 @@
 
-using JqueryDataTables.ServerSideMultiColumnSortingAndSearching.Infrastructure;
 using System;
 
 namespace ServerSideMultiColumnSortingAndSearching.Models
