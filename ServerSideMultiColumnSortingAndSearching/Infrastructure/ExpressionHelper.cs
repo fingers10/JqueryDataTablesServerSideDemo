@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public static class ExpressionHelper
     {

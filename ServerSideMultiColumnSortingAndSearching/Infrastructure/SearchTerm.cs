@@ -1,4 +1,6 @@
-namespace ServerSideMultiColumnSortingAndSearching.Models
+using ServerSideMultiColumnSortingAndSearching.Contracts;
+
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class SearchTerm
     {

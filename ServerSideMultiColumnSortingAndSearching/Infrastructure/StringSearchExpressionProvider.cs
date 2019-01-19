@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class StringSearchExpressionProvider : DefaultSearchExpressionProvider
     {

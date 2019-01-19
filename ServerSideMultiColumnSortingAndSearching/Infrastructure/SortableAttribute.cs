@@ -1,6 +1,6 @@
 using System;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class SortableAttribute : Attribute

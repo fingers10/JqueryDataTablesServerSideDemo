@@ -1,8 +1,9 @@
+using ServerSideMultiColumnSortingAndSearching.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class DefaultSearchExpressionProvider : ISearchExpressionProvider
     {

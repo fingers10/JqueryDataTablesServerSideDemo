@@ -1,4 +1,4 @@
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class SortTerm
     {

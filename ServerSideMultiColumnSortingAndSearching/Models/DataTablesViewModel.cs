@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ServerSideMultiColumnSortingAndSearching.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServerSideMultiColumnSortingAndSearching.Models
 {
@@ -59,7 +61,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
     /// <summary>
     /// The parameters sent by jQuery DataTables in AJAX queries.
     /// </summary>
-    public class DTParameters
+    public class DTParameters<T>
     {
         /// <summary>
         /// Draw counter.

@@ -1,9 +1,10 @@
+using ServerSideMultiColumnSortingAndSearching.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class SearchOptionsProcessor<T, TEntity>
     {
