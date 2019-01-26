@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServerSideMultiColumnSortingAndSearching.Models;
+using System;
 
 namespace ServerSideMultiColumnSortingAndSearching.Controllers
 {
@@ -10,7 +12,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Controllers
         }
         
         [HttpPost]
-        public IActionResult LoadTable([FromBody]DTParameters<ClassName> param)
+        public IActionResult LoadTable([FromBody]DTParameters<DemoModel> param)
         {
             try
             {
@@ -18,7 +20,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Controllers
                 //param.DataSource = new MemberClaimInfoDAO().GetMemberClaimInfo(Environment, await GetWarehouseIdStringAsync(memberInfos), param.StringValue2);
                 //param.ApplySearchAndSort<MemberClaimInfoDataModel>();
 
-                return new JsonResult(new DTResult<MemberClaimInfoBEO>
+                return new JsonResult(new DTResult<DemoModel>
                 {
                     draw = param.Draw,
                     data = param.DataSource,
@@ -28,6 +30,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Controllers
             }
             catch (Exception e)
             {
+                Console.Write(e.Message);
                 return new JsonResult(new { error = "Internal Server Error" });
             }
         }
