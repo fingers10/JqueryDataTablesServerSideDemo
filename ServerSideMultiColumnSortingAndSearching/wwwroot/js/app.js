@@ -3,8 +3,11 @@
 $(() => {
     if ($('#fingers10').length !== 0) {
 
-        $('#fingers10 thead tr:last th').each(function() {
-            $(this).html('<input type="search" disabled="disabled" />');
+        $('#fingers10 thead tr:last th').each(function () {
+            var label = $('#fingers10 thead tr:first th:eq(' + $(this).index() + ')').html();
+            $(this)
+                .addClass('p-0')
+                .html('<span class="sr-only">' + label + '</span><input type="search" class="form-control form-control-sm" disabled="disabled" aria-label="' + label + '" />');
         });
 
         var table = $('#fingers10').DataTable({
@@ -23,7 +26,7 @@ $(() => {
                 url: '/Home/LoadTable/',
                 contentType: "application/json; charset=utf-8",
                 async: true,
-                data: function(data) {
+                data: function (data) {
                     data.StringValue1 = "Additional Parameters 1";
                     data.StringValue2 = "Additional Parameters 2";
                     return JSON.stringify(data);
@@ -38,7 +41,7 @@ $(() => {
                 {
                     title: "Birth Date",
                     data: "BirthDate",
-                    render: function(data, type, row) {
+                    render: function (data, type, row) {
                         return window.moment(row.BirthDate).format("MM/D/yyyy");
                     },
                     name: "eq"
@@ -51,10 +54,10 @@ $(() => {
             ]
         });
 
-        table.columns().every(function(index) {
+        table.columns().every(function (index) {
             $('#fingers10_wrapper .dataTables_scrollHeadInner table thead tr:last th:eq(' + index + ') input')
                 .on('keyup',
-                    function(e) {
+                    function (e) {
                         if (e.keyCode === 13) {
                             table.column($(this).parent().index() + ':visible').search(this.value).draw();
                         }

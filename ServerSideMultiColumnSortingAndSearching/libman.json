@@ -3,19 +3,6 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "datatables@1.10.19",
-      "destination": "wwwroot/lib/datatables/",
-      "files": [
-        "js/jquery.dataTables.min.js",
-        "images/sort_desc_disabled.png",
-        "images/sort_desc.png",
-        "images/sort_both.png",
-        "images/sort_asc_disabled.png",
-        "images/sort_asc.png",
-        "css/jquery.dataTables.min.css"
-      ]
-    },
-    {
       "library": "jquery@3.3.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
@@ -27,6 +14,28 @@
       "destination": "wwwroot/lib/momentjs/",
       "files": [
         "moment.min.js"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@4.2.1",
+      "destination": "wwwroot/lib/twitter-bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/lib/datatables/",
+      "files": [
+        "js/jquery.dataTables.min.js",
+        "images/sort_asc.png",
+        "images/sort_asc_disabled.png",
+        "images/sort_both.png",
+        "images/sort_desc.png",
+        "images/sort_desc_disabled.png",
+        "css/dataTables.bootstrap4.min.css",
+        "js/dataTables.bootstrap4.min.js"
       ]
     }
   ]
