@@ -8,7 +8,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
 {
     public class SortOptionsProcessor<T, TEntity>
     {
-        private static IEnumerable<SortTerm> GetAllTerms(DTParameters<TEntity> table)
+        private static IEnumerable<SortTerm> GetAllTerms(DTParameters table)
         {
             var dtColumns = table.Columns as IList<DTColumn> ?? table.Columns.ToList();
 
@@ -27,7 +27,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
             }
         }
 
-        private static IEnumerable<SortTerm> GetValidTerms(DTParameters<TEntity> table)
+        private static IEnumerable<SortTerm> GetValidTerms(DTParameters table)
         {
             var queryTerms = GetAllTerms(table).ToArray();
             if (!queryTerms.Any()) yield break;
@@ -50,7 +50,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
             }
         }
 
-        public IQueryable<TEntity> Apply(IQueryable<TEntity> query, DTParameters<TEntity> table)
+        public IQueryable<TEntity> Apply(IQueryable<TEntity> query, DTParameters table)
         {
             var terms = GetValidTerms(table).ToArray();
             if (!terms.Any()) return query;

@@ -1,31 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServerSideMultiColumnSortingAndSearching.Contracts;
 using ServerSideMultiColumnSortingAndSearching.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace ServerSideMultiColumnSortingAndSearching.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IDemoService _demoService;
+
+        public HomeController(IDemoService demoService)
+        {
+            _demoService = demoService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
         
         [HttpPost]
-        public IActionResult LoadTable([FromBody]DTParameters<DemoModel> param)
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> LoadTable([FromBody]DTParameters param)
         {
             try
             {
-                //var memberInfos = await _databaseService.GetMemberInfoAsync(Environment, param.StringValue1);
-                //param.DataSource = new MemberClaimInfoDAO().GetMemberClaimInfo(Environment, await GetWarehouseIdStringAsync(memberInfos), param.StringValue2);
-                //param.ApplySearchAndSort<MemberClaimInfoDataModel>();
+                var data = await _demoService.GetDataAsync(param);
 
-                return new JsonResult(new DTResult<DemoModel>
+                return new JsonResult(new DTResult<Demo>
                 {
                     draw = param.Draw,
-                    data = param.DataSource,
-                    recordsFiltered = param.DataSource.Count,
-                    recordsTotal = param.DataSource.Count
+                    data = data,
+                    recordsFiltered = data.Length,
+                    recordsTotal = data.Length
                 });
             }
             catch (Exception e)

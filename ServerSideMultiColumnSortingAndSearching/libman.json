@@ -21,6 +21,13 @@
       "files": [
         "jquery.min.js"
       ]
+    },
+    {
+      "library": "moment.js@2.23.0",
+      "destination": "wwwroot/lib/momentjs/",
+      "files": [
+        "moment.min.js"
+      ]
     }
   ]
 }

@@ -33,7 +33,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
         /// This is an array of data source objects, one for each row, which will be used by DataTables.
         /// Note that this parameter's name can be changed using the ajaxDT option's dataSrc property.
         /// </summary>
-        public List<T> data { get; set; }
+        public T[] data { get; set; }
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
     /// <summary>
     /// The parameters sent by jQuery DataTables in AJAX queries.
     /// </summary>
-    public class DTParameters<T>
+    public class DTParameters
     {
         /// <summary>
         /// Draw counter.
@@ -106,11 +106,6 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
                     : null;
 
         /// <summary>
-        /// Data Source to be loaded into DataTable
-        /// </summary>
-        public List<T> DataSource { get; set; }
-
-        /// <summary>
         /// For Posting Additional Parameters to Server
         /// </summary>
         public string StringValue1 { get; set; }
@@ -120,18 +115,6 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
         /// </summary>
         public string StringValue2 { get; set; }
 
-
-        public IQueryable<T> ApplySearchAndSort<TEntity>()
-        {
-            var query = DataSource.AsQueryable();
-            var searchProcessor = new SearchOptionsProcessor<TEntity, T>();
-            var sortProcessor = new SortOptionsProcessor<TEntity, T>();
-
-            query = searchProcessor.Apply(query, Columns);
-            query = sortProcessor.Apply(query, this);
-            DataSource = query.ToList();
-            return query;
-        }
     }
 
     /// <summary>
