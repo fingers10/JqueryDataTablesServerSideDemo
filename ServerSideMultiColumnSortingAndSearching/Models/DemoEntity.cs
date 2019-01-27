@@ -9,7 +9,10 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime BirthDate { get; set; }
-        public long BankBalance { get; set; }
+        public string Position { get; set; }
+        public string Office { get; set; }
+        public int Extn { get; set; }
+        public DateTime StartDate { get; set; }
+        public long Salary { get; set; }
     }
 }

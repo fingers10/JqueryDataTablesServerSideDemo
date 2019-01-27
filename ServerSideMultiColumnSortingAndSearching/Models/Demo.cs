@@ -5,16 +5,30 @@ namespace ServerSideMultiColumnSortingAndSearching.Models
 {
     public class Demo
     {
+        public int Id { get; set; }
+
         [SearchableString]
         [Sortable(Default = true)]
         public string Name { get; set; }
 
+        [SearchableString]
+        [Sortable]
+        public string Position { get; set; }
+
+        [SearchableString]
+        [Sortable]
+        public string Office { get; set; }
+
+        [SearchableInt]
+        [Sortable]
+        public int Extn { get; set; }
+
         [SearchableDateTime]
         [Sortable]
-        public DateTime BirthDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [SearchableLong]
         [Sortable]
-        public long BankBalance { get; set; }
+        public long Salary { get; set; }
     }
 }

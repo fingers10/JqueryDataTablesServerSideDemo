@@ -7,7 +7,7 @@ $(() => {
             var label = $('#fingers10 thead tr:first th:eq(' + $(this).index() + ')').html();
             $(this)
                 .addClass('p-0')
-                .html('<span class="sr-only">' + label + '</span><input type="search" class="form-control form-control-sm" disabled="disabled" aria-label="' + label + '" />');
+                .html('<span class="sr-only">' + label + '</span><input type="search" class="form-control form-control-sm" aria-label="' + label + '" />');
         });
 
         var table = $('#fingers10').DataTable({
@@ -39,23 +39,38 @@ $(() => {
                     name: "co"
                 },
                 {
-                    title: "Birth Date",
-                    data: "BirthDate",
+                    title: "Position",
+                    data: "Position",
+                    name: "co"
+                },
+                {
+                    title: "Office",
+                    data: "Office",
+                    name: "eq"
+                },
+                {
+                    title: "Extn",
+                    data: "Extn",
+                    name: "eq"
+                },
+                {
+                    title: "Start Date",
+                    data: "StartDate",
                     render: function (data, type, row) {
-                        return window.moment(row.BirthDate).format("MM/D/yyyy");
+                        return window.moment(row.StartDate).format("DD/MM/YYYY");
                     },
                     name: "eq"
                 },
                 {
-                    title: "Bank Balance",
-                    data: "BankBalance",
+                    title: "Salary",
+                    data: "Salary",
                     name: "eq"
                 }
             ]
         });
 
         table.columns().every(function (index) {
-            $('#fingers10_wrapper .dataTables_scrollHeadInner table thead tr:last th:eq(' + index + ') input')
+            $('#fingers10 thead tr:last th:eq(' + index + ') input')
                 .on('keyup',
                     function (e) {
                         if (e.keyCode === 13) {
