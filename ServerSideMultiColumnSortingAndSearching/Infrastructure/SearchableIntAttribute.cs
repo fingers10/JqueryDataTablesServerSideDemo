@@ -7,7 +7,7 @@ namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
     {
         public SearchableIntAttribute()
         {
-            ExpressionProvider = new LongSearchExpressionProvider();
+            ExpressionProvider = new IntSearchExpressionProvider();
         }
     }
 }
