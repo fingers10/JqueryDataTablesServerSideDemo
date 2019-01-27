@@ -1,14 +1,13 @@
-﻿using AutoMapper;
+﻿using AspNetCoreServerSide.Contracts;
+using AspNetCoreServerSide.Infrastructure;
+using AspNetCoreServerSide.Models;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using ServerSideMultiColumnSortingAndSearching.Contracts;
-using ServerSideMultiColumnSortingAndSearching.Infrastructure;
-using ServerSideMultiColumnSortingAndSearching.Models;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ServerSideMultiColumnSortingAndSearching.Services
+namespace AspNetCoreServerSide.Services
 {
     public class DefaultDemoService:IDemoService
     {

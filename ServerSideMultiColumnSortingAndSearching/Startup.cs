@@ -1,14 +1,14 @@
-﻿using AutoMapper;
+﻿using AspNetCoreServerSide.Contracts;
+using AspNetCoreServerSide.Infrastructure;
+using AspNetCoreServerSide.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using ServerSideMultiColumnSortingAndSearching.Contracts;
-using ServerSideMultiColumnSortingAndSearching.Infrastructure;
-using ServerSideMultiColumnSortingAndSearching.Services;
 
-namespace ServerSideMultiColumnSortingAndSearching
+namespace AspNetCoreServerSide
 {
     public class Startup
     {

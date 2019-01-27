@@ -1,6 +1,6 @@
-using ServerSideMultiColumnSortingAndSearching.Contracts;
+using AspNetCoreServerSide.Contracts;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     public class SearchTerm
     {

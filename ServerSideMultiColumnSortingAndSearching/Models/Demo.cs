@@ -1,7 +1,7 @@
-﻿using ServerSideMultiColumnSortingAndSearching.Infrastructure;
+﻿using AspNetCoreServerSide.Infrastructure;
 using System;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace AspNetCoreServerSide.Models
 {
     public class Demo
     {

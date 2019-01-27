@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ServerSideMultiColumnSortingAndSearching.Contracts;
-using ServerSideMultiColumnSortingAndSearching.Models;
+﻿using AspNetCoreServerSide.Contracts;
+using AspNetCoreServerSide.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace ServerSideMultiColumnSortingAndSearching.Controllers
+namespace AspNetCoreServerSide.Controllers
 {
     public class HomeController : Controller
     {

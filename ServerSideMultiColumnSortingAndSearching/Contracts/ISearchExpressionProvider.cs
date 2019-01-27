@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace ServerSideMultiColumnSortingAndSearching.Contracts
+namespace AspNetCoreServerSide.Contracts
 {
     public interface ISearchExpressionProvider
     {

@@ -1,4 +1,4 @@
-namespace ServerSideMultiColumnSortingAndSearching.Extensions
+namespace AspNetCoreServerSide.Extensions
 {
     public static class SessionExtensions
     {

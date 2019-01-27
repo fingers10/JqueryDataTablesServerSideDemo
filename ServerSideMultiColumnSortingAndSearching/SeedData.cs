@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
+﻿using AspNetCoreServerSide.Models;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
-using ServerSideMultiColumnSortingAndSearching.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ServerSideMultiColumnSortingAndSearching
+namespace AspNetCoreServerSide
 {
     public static class SeedData
     {

@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using ServerSideMultiColumnSortingAndSearching.Models;
+﻿using AspNetCoreServerSide.Models;
+using AutoMapper;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     public class MappingProfile : Profile
     {

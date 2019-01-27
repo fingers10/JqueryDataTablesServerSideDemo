@@ -1,8 +1,7 @@
-﻿using ServerSideMultiColumnSortingAndSearching.Models;
-using System.Collections.Generic;
+﻿using AspNetCoreServerSide.Models;
 using System.Threading.Tasks;
 
-namespace ServerSideMultiColumnSortingAndSearching.Contracts
+namespace AspNetCoreServerSide.Contracts
 {
     public interface IDemoService
     {

@@ -1,7 +1,7 @@
-using ServerSideMultiColumnSortingAndSearching.Contracts;
+using AspNetCoreServerSide.Contracts;
 using System;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class SearchableAttribute : Attribute

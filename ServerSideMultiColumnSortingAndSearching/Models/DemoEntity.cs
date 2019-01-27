@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ServerSideMultiColumnSortingAndSearching.Models
+namespace AspNetCoreServerSide.Models
 {
     public class DemoEntity
     {

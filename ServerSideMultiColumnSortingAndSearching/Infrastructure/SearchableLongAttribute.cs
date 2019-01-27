@@ -1,6 +1,6 @@
 using System;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class SearchableLongAttribute : SearchableAttribute

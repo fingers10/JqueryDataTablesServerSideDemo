@@ -1,10 +1,10 @@
-using ServerSideMultiColumnSortingAndSearching.Models;
+using AspNetCoreServerSide.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     public class SortOptionsProcessor<T, TEntity>
     {

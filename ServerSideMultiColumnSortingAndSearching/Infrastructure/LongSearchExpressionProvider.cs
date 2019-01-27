@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace ServerSideMultiColumnSortingAndSearching.Infrastructure
+namespace AspNetCoreServerSide.Infrastructure
 {
     public class LongSearchExpressionProvider : ComparableSearchExpressionProvider
     {

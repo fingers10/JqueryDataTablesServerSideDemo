@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServerSideMultiColumnSortingAndSearching.Models;
+﻿using AspNetCoreServerSide.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace ServerSideMultiColumnSortingAndSearching
+namespace AspNetCoreServerSide
 {
     public class Fingers10DbContext:DbContext
     {
