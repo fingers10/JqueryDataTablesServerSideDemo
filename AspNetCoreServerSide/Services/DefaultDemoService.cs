@@ -6,6 +6,8 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreWeb.Infrastructure;
+using AspNetCoreWeb.Models;
 
 namespace AspNetCoreServerSide.Services
 {

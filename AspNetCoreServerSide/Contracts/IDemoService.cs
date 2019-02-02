@@ -1,5 +1,6 @@
 ﻿using AspNetCoreServerSide.Models;
 using System.Threading.Tasks;
+using AspNetCoreWeb.Models;
 
 namespace AspNetCoreServerSide.Contracts
 {

@@ -1,5 +1,6 @@
 ﻿using AspNetCoreServerSide.Infrastructure;
 using System;
+using AspNetCoreWeb.Attributes;
 
 namespace AspNetCoreServerSide.Models
 {

@@ -3,6 +3,7 @@ using AspNetCoreServerSide.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using AspNetCoreWeb.Models;
 
 namespace AspNetCoreServerSide.Controllers
 {
