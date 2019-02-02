@@ -1,6 +1,6 @@
 ﻿using AspNetCoreServerSide.Models;
+using JqueryDataTables.ServerSide.AspNetCoreWeb;
 using System.Threading.Tasks;
-using AspNetCoreWeb.Models;
 
 namespace AspNetCoreServerSide.Contracts
 {

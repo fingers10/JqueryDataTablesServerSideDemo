@@ -1,13 +1,11 @@
 ﻿using AspNetCoreServerSide.Contracts;
-using AspNetCoreServerSide.Infrastructure;
 using AspNetCoreServerSide.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using JqueryDataTables.ServerSide.AspNetCoreWeb;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreWeb.Infrastructure;
-using AspNetCoreWeb.Models;
 
 namespace AspNetCoreServerSide.Services
 {

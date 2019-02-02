@@ -1,6 +1,5 @@
-﻿using AspNetCoreServerSide.Infrastructure;
+﻿using JqueryDataTables.ServerSide.AspNetCoreWeb;
 using System;
-using AspNetCoreWeb.Attributes;
 
 namespace AspNetCoreServerSide.Models
 {
