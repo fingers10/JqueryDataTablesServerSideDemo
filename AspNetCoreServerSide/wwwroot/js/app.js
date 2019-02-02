@@ -26,9 +26,14 @@ $(() => {
                 url: '/Home/LoadTable/',
                 contentType: "application/json; charset=utf-8",
                 async: true,
+                headers: {
+                    "XSRF-TOKEN" : document.querySelector('[name="__RequestVerificationToken"]').value
+                },
                 data: function (data) {
-                    data.StringValue1 = "Additional Parameters 1";
-                    data.StringValue2 = "Additional Parameters 2";
+                    let additionalValues = [];
+                    additionalValues[0] = "Additional Parameters 1";
+                    additionalValues[1] = "Additional Parameters 2";
+                    data.AdditionalValues = additionalValues;
                     return JSON.stringify(data);
                 }
             },
@@ -36,7 +41,7 @@ $(() => {
                 {
                     title: "Name",
                     data: "Name",
-                    name: "co"
+                    name: "eq"
                 },
                 {
                     title: "Position",
@@ -59,12 +64,12 @@ $(() => {
                     render: function (data, type, row) {
                         return window.moment(row.StartDate).format("DD/MM/YYYY");
                     },
-                    name: "eq"
+                    name: "gt"
                 },
                 {
                     title: "Salary",
                     data: "Salary",
-                    name: "eq"
+                    name: "lte"
                 }
             ]
         });

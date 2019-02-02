@@ -26,6 +26,7 @@ namespace AspNetCoreServerSide
                 });
 
             services
+                .AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN")
                 .AddMvc()
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 

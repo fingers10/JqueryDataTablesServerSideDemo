@@ -22,7 +22,6 @@ namespace AspNetCoreServerSide.Controllers
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> LoadTable([FromBody]DTParameters param)
         {
             try
