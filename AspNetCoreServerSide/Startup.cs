@@ -1,4 +1,5 @@
-﻿using AspNetCoreServerSide.Contracts;
+﻿using AspNetCoreServerSide.Binders;
+using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Infrastructure;
 using AspNetCoreServerSide.Services;
 using AutoMapper;
@@ -16,21 +17,24 @@ namespace AspNetCoreServerSide
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IDemoService, DefaultDemoService>();
+            services.AddScoped<IDemoService,DefaultDemoService>();
 
             // Use in-memory database for quick dev and testing
             services.AddDbContext<Fingers10DbContext>(
-                options =>
-                {
+                options => {
                     options.UseInMemoryDatabase("fingers10db");
                 });
 
             services
                 .AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN")
-                .AddMvc()
+                .AddMvc(options => {
+                    options.ModelBinderProviders.Insert(0,new JqueryDataTableBinderProvider());
+                })
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddAutoMapper(options => options.AddProfile<MappingProfile>());
+
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +46,7 @@ namespace AspNetCoreServerSide
             }
 
             app.UseStaticFiles();
+            //app.UseSession();
             app.UseMvcWithDefaultRoute();
         }
     }

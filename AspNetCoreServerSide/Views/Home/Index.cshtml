@@ -1,4 +1,4 @@
-﻿
+﻿@model AspNetCoreServerSide.Models.Demo
 @{
     Layout = null;
 }
@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/datatables/css/buttons.dataTables.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
 </head>
 <body>
     @Html.AntiForgeryToken();
@@ -25,26 +27,13 @@
                             <p class="text-center">Asp.Net Core Server Side Multi Column Filtering And Ordering Demo.</p>
                         </div>
                         <div class="card-body">
-                            <table id="fingers10" class="table table-sm table-dark table-bordered table-hover">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Extn</th>
-                                        <th>Start Date</th>
-                                        <th>Salary</th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <datatables id="fingers10"
+                                        class="table table-sm table-dark table-bordered table-hover"
+                                        model="@Model"
+                                        thead-class="text-center"
+                                        search-row-th-class="p-0"
+                                        search-input-class="form-control form-control-sm">
+                            </datatables>
                         </div>
                         <div class="card-footer">
                             <p class="text-center">Demo By &copy; Fingers10 - Abdul Rahman.</p>
@@ -60,6 +49,7 @@
     <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables/js/dataTables.buttons.min.js" asp-append-version="true"></script>
     <script src="~/js/app.js" asp-append-version="true"></script>
 </body>
 </html>

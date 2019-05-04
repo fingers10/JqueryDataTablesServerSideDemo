@@ -6,6 +6,6 @@ namespace AspNetCoreServerSide.Contracts
 {
     public interface IDemoService
     {
-        Task<Demo[]> GetDataAsync(DTParameters table);
+        Task<PagedResults<Demo>> GetDataAsync(DTParameters table);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using JqueryDataTables.ServerSide.AspNetCoreWeb;
 using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspNetCoreServerSide.Models
 {
@@ -21,10 +23,12 @@ namespace AspNetCoreServerSide.Models
 
         [SearchableInt]
         [Sortable]
+        [DisplayName("Extension")]
         public int Extn { get; set; }
 
         [SearchableDateTime]
         [Sortable]
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
 
         [SearchableLong]

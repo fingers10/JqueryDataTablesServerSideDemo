@@ -20,20 +20,26 @@ namespace AspNetCoreServerSide.Services
             _mappingConfiguration = mappingConfiguration;
         }
 
-        public async Task<Demo[]> GetDataAsync(DTParameters table)
+        public async Task<PagedResults<Demo>> GetDataAsync(DTParameters table)
         {
             IQueryable<DemoEntity> query = _context.Demos;
             query = new SearchOptionsProcessor<Demo,DemoEntity>().Apply(query,table.Columns);
             query = new SortOptionsProcessor<Demo,DemoEntity>().Apply(query,table);
 
+            var size = await query.CountAsync();
+
             var items = await query
                 .AsNoTracking()
-                .Skip(table.Start - 1 * table.Length)
+                .Skip((table.Start / table.Length) * table.Length)
                 .Take(table.Length)
                 .ProjectTo<Demo>(_mappingConfiguration)
                 .ToArrayAsync();
 
-            return items;
+            return new PagedResults<Demo>
+            {
+                Items = items,
+                TotalSize = size
+            };
         }
     }
 }
