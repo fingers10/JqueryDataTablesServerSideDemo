@@ -2,7 +2,8 @@
 using AspNetCoreServerSide.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using JqueryDataTables.ServerSide.AspNetCoreWeb;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.Infrastructure;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace AspNetCoreServerSide.Services
             _mappingConfiguration = mappingConfiguration;
         }
 
-        public async Task<PagedResults<Demo>> GetDataAsync(DTParameters table)
+        public async Task<JqueryDataTablesPagedResults<Demo>> GetDataAsync(JqueryDataTablesParameters table)
         {
             IQueryable<DemoEntity> query = _context.Demos;
             query = new SearchOptionsProcessor<Demo,DemoEntity>().Apply(query,table.Columns);
@@ -35,8 +36,7 @@ namespace AspNetCoreServerSide.Services
                 .ProjectTo<Demo>(_mappingConfiguration)
                 .ToArrayAsync();
 
-            return new PagedResults<Demo>
-            {
+            return new JqueryDataTablesPagedResults<Demo> {
                 Items = items,
                 TotalSize = size
             };

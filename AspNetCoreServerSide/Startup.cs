@@ -1,13 +1,12 @@
-﻿using AspNetCoreServerSide.Binders;
-using AspNetCoreServerSide.Contracts;
+﻿using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Infrastructure;
 using AspNetCoreServerSide.Services;
 using AutoMapper;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
 
 namespace AspNetCoreServerSide
 {
@@ -25,16 +24,11 @@ namespace AspNetCoreServerSide
                     options.UseInMemoryDatabase("fingers10db");
                 });
 
-            services
-                .AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN")
-                .AddMvc(options => {
-                    options.ModelBinderProviders.Insert(0,new JqueryDataTableBinderProvider());
-                })
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddMvc();
+
+            services.AddJqueryDataTables();
 
             services.AddAutoMapper(options => options.AddProfile<MappingProfile>());
-
-            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +40,6 @@ namespace AspNetCoreServerSide
             }
 
             app.UseStaticFiles();
-            //app.UseSession();
             app.UseMvcWithDefaultRoute();
         }
     }

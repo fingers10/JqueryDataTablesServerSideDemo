@@ -1,7 +1,7 @@
-﻿using AspNetCoreServerSide.ActionResults;
-using AspNetCoreServerSide.Contracts;
+﻿using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Models;
-using JqueryDataTables.ServerSide.AspNetCoreWeb;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,7 +11,6 @@ namespace AspNetCoreServerSide.Controllers
     public class HomeController:Controller
     {
         private readonly IDemoService _demoService;
-        //private ISession Session => HttpContext.Session;
 
         public HomeController(IDemoService demoService)
         {
@@ -23,17 +22,17 @@ namespace AspNetCoreServerSide.Controllers
             return View(new Demo());
         }
 
-        public async Task<IActionResult> LoadTable(DTParameters param)
+        public async Task<IActionResult> LoadTable(JqueryDataTablesParameters param)
         {
             try
             {
                 var results = await _demoService.GetDataAsync(param);
 
-                return new JsonResult(new DTResult<Demo> {
-                    draw = param.Draw,
-                    data = results.Items,
-                    recordsFiltered = results.TotalSize,
-                    recordsTotal = results.TotalSize
+                return new JsonResult(new JqueryDataTablesResult<Demo> {
+                    Draw = param.Draw,
+                    Data = results.Items,
+                    RecordsFiltered = results.TotalSize,
+                    RecordsTotal = results.TotalSize
                 });
             } catch(Exception e)
             {
@@ -43,17 +42,17 @@ namespace AspNetCoreServerSide.Controllers
         }
 
         //[HttpPost]
-        //public async Task<IActionResult> LoadTable([FromBody]DTParameters param)
+        //public async Task<IActionResult> LoadTable([FromBody]JqueryDataTablesParameters param)
         //{
         //    try
         //    {
         //        var results = await _demoService.GetDataAsync(param);
 
-        //        return new JsonResult(new DTResult<Demo> {
-        //            draw = param.Draw,
-        //            data = results.Items,
-        //            recordsFiltered = results.TotalSize,
-        //            recordsTotal = results.TotalSize
+        //        return new JsonResult(new JqueryDataTablesResult<Demo> {
+        //            Draw = param.Draw,
+        //            Data = results.Items,
+        //            RecordsFiltered = results.TotalSize,
+        //            RecordsTotal = results.TotalSize
         //        });
         //    } catch(Exception e)
         //    {
@@ -62,32 +61,10 @@ namespace AspNetCoreServerSide.Controllers
         //    }
         //}
 
-        //[HttpPost]
-        //public async Task<JsonResult> ExportTable([FromBody]DTParameters param)
-        //{
-        //    try
-        //    {
-        //        var results = await _demoService.GetDataAsync(param);
-        //        Session.SetString("DemoKey",JsonConvert.SerializeObject(results.Items));
-        //        return new JsonResult(true);
-
-        //    } catch(Exception e)
-        //    {
-        //        Console.Write(e.Message);
-        //        return new JsonResult(false);
-        //    }
-        //}
-
-        //public IActionResult GetExcel()
-        //{
-        //    return new DataTablesExcelResult<Demo>(Session,"DemoKey","Demo Sheet Name","Fingers10");
-        //}
-
-        public async Task<IActionResult> GetExcel(DTParameters param)
+        public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
         {
             var results = await _demoService.GetDataAsync(param);
-            //Session.SetString("DemoKey",JsonConvert.SerializeObject(results.Items));
-            return new DataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using JqueryDataTables.ServerSide.AspNetCoreWeb;
+﻿using JqueryDataTables.ServerSide.AspNetCoreWeb.Attributes;
 using System;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace AspNetCoreServerSide.Models
 {
