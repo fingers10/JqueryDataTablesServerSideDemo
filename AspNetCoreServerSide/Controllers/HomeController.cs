@@ -2,7 +2,9 @@
 using AspNetCoreServerSide.Models;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -41,11 +43,18 @@ namespace AspNetCoreServerSide.Controllers
             }
         }
 
+        public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
+        {
+            var results = await _demoService.GetDataAsync(param);
+            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> LoadTable([FromBody]JqueryDataTablesParameters param)
         //{
         //    try
         //    {
+        //        HttpContext.Session.SetString(nameof(JqueryDataTablesParameters),JsonConvert.SerializeObject(param));
         //        var results = await _demoService.GetDataAsync(param);
 
         //        return new JsonResult(new JqueryDataTablesResult<Demo> {
@@ -61,10 +70,12 @@ namespace AspNetCoreServerSide.Controllers
         //    }
         //}
 
-        public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
-        {
-            var results = await _demoService.GetDataAsync(param);
-            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
-        }
+        //public async Task<IActionResult> GetExcel()
+        //{
+        //    var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
+
+        //    var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
+        //    return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+        //}
     }
 }

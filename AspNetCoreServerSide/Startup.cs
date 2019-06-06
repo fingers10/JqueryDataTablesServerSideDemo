@@ -25,9 +25,8 @@ namespace AspNetCoreServerSide
                 });
 
             services.AddMvc();
-
+            services.AddSession();
             services.AddJqueryDataTables();
-
             services.AddAutoMapper(options => options.AddProfile<MappingProfile>());
         }
 
@@ -40,6 +39,7 @@ namespace AspNetCoreServerSide
             }
 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
         }
     }
