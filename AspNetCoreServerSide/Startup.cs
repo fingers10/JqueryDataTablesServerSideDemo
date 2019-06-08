@@ -2,11 +2,11 @@
 using AspNetCoreServerSide.Infrastructure;
 using AspNetCoreServerSide.Services;
 using AutoMapper;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
 
 namespace AspNetCoreServerSide
 {
@@ -16,21 +16,18 @@ namespace AspNetCoreServerSide
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IDemoService, DefaultDemoService>();
+            services.AddScoped<IDemoService,DefaultDemoService>();
 
             // Use in-memory database for quick dev and testing
             services.AddDbContext<Fingers10DbContext>(
-                options =>
-                {
+                options => {
                     options.UseInMemoryDatabase("fingers10db");
                 });
 
-            services
-                .AddAntiforgery(options => options.HeaderName = "XSRF-TOKEN")
-                .AddMvc()
-                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-
-            services.AddAutoMapper(options => options.AddProfile<MappingProfile>());
+            services.AddMvc();
+            services.AddSession();
+            services.AddJqueryDataTables();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +39,7 @@ namespace AspNetCoreServerSide
             }
 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
         }
     }

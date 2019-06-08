@@ -3,13 +3,6 @@
 $(() => {
     if ($('#fingers10').length !== 0) {
 
-        $('#fingers10 thead tr:last th').each(function () {
-            var label = $('#fingers10 thead tr:first th:eq(' + $(this).index() + ')').html();
-            $(this)
-                .addClass('p-0')
-                .html('<span class="sr-only">' + label + '</span><input type="search" class="form-control form-control-sm" aria-label="' + label + '" />');
-        });
-
         var table = $('#fingers10').DataTable({
             language: {
                 processing: "Loading Data...",
@@ -20,59 +13,145 @@ $(() => {
             orderCellsTop: true,
             autoWidth: true,
             deferRender: true,
-            dom: '<tr>',
+            lengthMenu: [5, 10, 15, 20],
+            dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+            buttons: [
+                {
+                    text: 'Export to Excel',
+                    className: 'btn btn-sm btn-dark',
+                    action: function (e, dt, node, config) {
+                        var data = table.ajax.params();
+                        var x = JSON.stringify(data, null, 4);
+                        window.location.href = "/Home/GetExcel?" + $.param(data);
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    }
+                }
+            ],
             ajax: {
-                type: "POST",
                 url: '/Home/LoadTable/',
-                contentType: "application/json; charset=utf-8",
-                async: true,
-                headers: {
-                    "XSRF-TOKEN" : document.querySelector('[name="__RequestVerificationToken"]').value
-                },
                 data: function (data) {
-                    let additionalValues = [];
-                    additionalValues[0] = "Additional Parameters 1";
-                    additionalValues[1] = "Additional Parameters 2";
-                    data.AdditionalValues = additionalValues;
-                    return JSON.stringify(data);
+                    return $.extend({}, data, {
+                        "additionalValues[0]": "Additional Parameters 1",
+                        "additionalValues[1]": "Additional Parameters 2"
+                    });
                 }
             },
             columns: [
                 {
-                    title: "Name",
+                    data: "Id",
+                    name: "eq",
+                    visible: false,
+                    searchable: false
+                },
+                {
                     data: "Name",
                     name: "eq"
                 },
                 {
-                    title: "Position",
                     data: "Position",
                     name: "co"
                 },
                 {
-                    title: "Office",
                     data: "Office",
                     name: "eq"
                 },
                 {
-                    title: "Extn",
                     data: "Extn",
                     name: "eq"
                 },
                 {
-                    title: "Start Date",
                     data: "StartDate",
                     render: function (data, type, row) {
-                        return window.moment(row.StartDate).format("DD/MM/YYYY");
+                        return window.moment(data).format("DD/MM/YYYY");
                     },
                     name: "gt"
                 },
                 {
-                    title: "Salary",
                     data: "Salary",
                     name: "lte"
                 }
             ]
         });
+
+        //var table = $('#fingers10').DataTable({
+        //    language: {
+        //        processing: "Loading Data...",
+        //        zeroRecords: "No matching records found"
+        //    },
+        //    processing: true,
+        //    serverSide: true,
+        //    orderCellsTop: true,
+        //    autoWidth: true,
+        //    deferRender: true,
+        //    lengthMenu: [5, 10, 15, 20],
+        //    dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        //    buttons: [
+        //        {
+        //            text: 'Export to Excel',
+        //            className: 'btn btn-sm btn-dark',
+        //            action: function (e, dt, node, config) {
+        //                window.location.href = "/Home/GetExcel";
+        //            },
+        //            init: function (api, node, config) {
+        //                $(node).removeClass('dt-button');
+        //            }
+        //        }
+        //    ],
+        //    ajax: {
+        //        type: "POST",
+        //        url: '/Home/LoadTable/',
+        //        contentType: "application/json; charset=utf-8",
+        //        async: true,
+        //        headers: {
+        //            "XSRF-TOKEN": document.querySelector('[name="__RequestVerificationToken"]').value
+        //        },
+        //        data: function (data) {
+        //            let additionalValues = [];
+        //            additionalValues[0] = "Additional Parameters 1";
+        //            additionalValues[1] = "Additional Parameters 2";
+        //            data.AdditionalValues = additionalValues;
+
+        //            return JSON.stringify(data);
+        //        }
+        //    },
+        //    columns: [
+        //        {
+        //            data: "Id",
+        //            name: "eq",
+        //            visible: false,
+        //            searchable: false
+        //        },
+        //        {
+        //            data: "Name",
+        //            name: "eq"
+        //        },
+        //        {
+        //            data: "Position",
+        //            name: "co"
+        //        },
+        //        {
+        //            data: "Office",
+        //            name: "eq"
+        //        },
+        //        {
+        //            data: "Extn",
+        //            name: "eq"
+        //        },
+        //        {
+        //            data: "StartDate",
+        //            render: function (data, type, row) {
+        //                return window.moment(data).format("DD/MM/YYYY");
+        //            },
+        //            name: "gt"
+        //        },
+        //        {
+        //            data: "Salary",
+        //            name: "lte"
+        //        }
+        //    ]
+        //});
 
         table.columns().every(function (index) {
             $('#fingers10 thead tr:last th:eq(' + index + ') input')
