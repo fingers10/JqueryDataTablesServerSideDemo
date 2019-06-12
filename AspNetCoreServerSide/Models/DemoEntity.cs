@@ -11,8 +11,9 @@ namespace AspNetCoreServerSide.Models
         public string Name { get; set; }
         public string Position { get; set; }
         public string Office { get; set; }
-        public int Extn { get; set; }
-        public DateTime StartDate { get; set; }
-        public long Salary { get; set; }
+        public short? Experience { get; set; }
+        public int? Extn { get; set; }
+        public DateTime? StartDate { get; set; }
+        public long? Salary { get; set; }
     }
 }

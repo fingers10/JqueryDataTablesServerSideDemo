@@ -20,18 +20,22 @@ namespace AspNetCoreServerSide.Models
         [Sortable]
         public string Office { get; set; }
 
+        [SearchableShort]
+        [Sortable]
+        public short? Experience { get; set; }
+
         [SearchableInt]
         [Sortable]
         [DisplayName("Extension")]
-        public int Extn { get; set; }
+        public int? Extn { get; set; }
 
         [SearchableDateTime]
         [Sortable]
         [DisplayName("Start Date")]
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         [SearchableLong]
         [Sortable]
-        public long Salary { get; set; }
+        public long? Salary { get; set; }
     }
 }

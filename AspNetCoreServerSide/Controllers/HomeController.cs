@@ -24,37 +24,10 @@ namespace AspNetCoreServerSide.Controllers
             return View(new Demo());
         }
 
-        public async Task<IActionResult> LoadTable(JqueryDataTablesParameters param)
-        {
-            try
-            {
-                var results = await _demoService.GetDataAsync(param);
-
-                return new JsonResult(new JqueryDataTablesResult<Demo> {
-                    Draw = param.Draw,
-                    Data = results.Items,
-                    RecordsFiltered = results.TotalSize,
-                    RecordsTotal = results.TotalSize
-                });
-            } catch(Exception e)
-            {
-                Console.Write(e.Message);
-                return new JsonResult(new { error = "Internal Server Error" });
-            }
-        }
-
-        public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
-        {
-            var results = await _demoService.GetDataAsync(param);
-            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
-        }
-
-        //[HttpPost]
-        //public async Task<IActionResult> LoadTable([FromBody]JqueryDataTablesParameters param)
+        //public async Task<IActionResult> LoadTable(JqueryDataTablesParameters param)
         //{
         //    try
         //    {
-        //        HttpContext.Session.SetString(nameof(JqueryDataTablesParameters),JsonConvert.SerializeObject(param));
         //        var results = await _demoService.GetDataAsync(param);
 
         //        return new JsonResult(new JqueryDataTablesResult<Demo> {
@@ -70,12 +43,39 @@ namespace AspNetCoreServerSide.Controllers
         //    }
         //}
 
-        //public async Task<IActionResult> GetExcel()
+        //public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
         //{
-        //    var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
-
-        //    var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
+        //    var results = await _demoService.GetDataAsync(param);
         //    return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
         //}
+
+        [HttpPost]
+        public async Task<IActionResult> LoadTable([FromBody]JqueryDataTablesParameters param)
+        {
+            try
+            {
+                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters),JsonConvert.SerializeObject(param));
+                var results = await _demoService.GetDataAsync(param);
+
+                return new JsonResult(new JqueryDataTablesResult<Demo> {
+                    Draw = param.Draw,
+                    Data = results.Items,
+                    RecordsFiltered = results.TotalSize,
+                    RecordsTotal = results.TotalSize
+                });
+            } catch(Exception e)
+            {
+                Console.Write(e.Message);
+                return new JsonResult(new { error = "Internal Server Error" });
+            }
+        }
+
+        public async Task<IActionResult> GetExcel()
+        {
+            var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
+
+            var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
+            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+        }
     }
 }

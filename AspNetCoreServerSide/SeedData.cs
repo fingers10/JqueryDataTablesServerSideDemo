@@ -29,14 +29,16 @@ namespace AspNetCoreServerSide
                     Name = "Airi Satou",
                     Position = "Accountant",
                     Office = "Tokyo",
-                    Extn = 5407,
-                    StartDate = new DateTime(2008,11,28),
-                    Salary = 162700
+                    Experience = null,
+                    Extn = null,
+                    StartDate = null,
+                    Salary = null
                 },
                 new DemoEntity {
                     Name = "Angelica Ramos",
                     Position = "Chief Executive Officer (CEO)",
                     Office = "London",
+                    Experience = 1,
                     Extn = 5797,
                     StartDate = new DateTime(2009,10,09),
                     Salary = 1200000
@@ -45,6 +47,7 @@ namespace AspNetCoreServerSide
                     Name = "Ashton Cox",
                     Position = "Junior Technical Author",
                     Office = "San Francisco",
+                    Experience = 2,
                     Extn = 1562,
                     StartDate = new DateTime(2009,01,12),
                     Salary = 86000
@@ -53,6 +56,7 @@ namespace AspNetCoreServerSide
                     Name = "Bradley Greer",
                     Position = "Software Engineer",
                     Office = "London",
+                    Experience = 3,
                     Extn = 2558,
                     StartDate = new DateTime(2012,10,13),
                     Salary = 132000
@@ -61,6 +65,7 @@ namespace AspNetCoreServerSide
                     Name = "Brenden Wagner",
                     Position = "Software Engineer",
                     Office = "San Francisco",
+                    Experience = 4,
                     Extn = 1314,
                     StartDate = new DateTime(2011,06,07),
                     Salary = 206850
@@ -69,6 +74,7 @@ namespace AspNetCoreServerSide
                     Name = "Brielle Williamson",
                     Position = "Integration Specialist",
                     Office = "New York",
+                    Experience = 5,
                     Extn = 4804,
                     StartDate = new DateTime(2012,12,02),
                     Salary = 372000
@@ -77,6 +83,7 @@ namespace AspNetCoreServerSide
                     Name = "Bruno Nash",
                     Position = "Software Engineer",
                     Office = "London",
+                    Experience = 6,
                     Extn = 6222,
                     StartDate = new DateTime(2011,05,03),
                     Salary = 163500
@@ -85,6 +92,7 @@ namespace AspNetCoreServerSide
                     Name = "Caesar Vance",
                     Position = "Pre-Sales Support",
                     Office = "New York",
+                    Experience = 7,
                     Extn = 8330,
                     StartDate = new DateTime(2011,12,12),
                     Salary = 106450
@@ -93,6 +101,7 @@ namespace AspNetCoreServerSide
                     Name = "Cara Stevens",
                     Position = "Sales Assistant",
                     Office = "New York",
+                    Experience = 8,
                     Extn = 3990,
                     StartDate = new DateTime(2011,12,06),
                     Salary = 145600
@@ -101,6 +110,7 @@ namespace AspNetCoreServerSide
                     Name = "Cedric Kelly",
                     Position = "Senior Javascript Developer",
                     Office = "Edinburgh",
+                    Experience = 9,
                     Extn = 6224,
                     StartDate = new DateTime(2012,03,29),
                     Salary = 433060
