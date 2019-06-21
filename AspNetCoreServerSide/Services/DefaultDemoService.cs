@@ -1,7 +1,9 @@
 ﻿using AspNetCoreServerSide.Contracts;
+using AspNetCoreServerSide.Helpers;
 using AspNetCoreServerSide.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Infrastructure;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.EntityFrameworkCore;
@@ -21,25 +23,14 @@ namespace AspNetCoreServerSide.Services
             _mappingConfiguration = mappingConfiguration;
         }
 
-        public async Task<JqueryDataTablesPagedResults<Demo>> GetDataAsync(JqueryDataTablesParameters table)
+        public async Task<JqueryDataTablesResult<Demo>> GetDataAsync(JqueryDataTablesParameters table)
         {
-            IQueryable<DemoEntity> query = _context.Demos;
-            query = new SearchOptionsProcessor<Demo,DemoEntity>().Apply(query,table.Columns);
-            query = new SortOptionsProcessor<Demo,DemoEntity>().Apply(query,table);
+			return await JqueryDataTableHelpers.GetJqueryDataTablesResultAsync<Demo, DemoEntity>(table, _context.Demos, _mappingConfiguration);
+        }
 
-            var size = await query.CountAsync();
-
-            var items = await query
-                .AsNoTracking()
-                .Skip((table.Start / table.Length) * table.Length)
-                .Take(table.Length)
-                .ProjectTo<Demo>(_mappingConfiguration)
-                .ToArrayAsync();
-
-            return new JqueryDataTablesPagedResults<Demo> {
-                Items = items,
-                TotalSize = size
-            };
+		public async Task<JqueryDataTablesExcelResult<Demo>> GetExcelDataAsync(JqueryDataTablesParameters table, bool convertAllData = false)
+        {
+			return await JqueryDataTableHelpers.GetJqueryDataTablesExcelResultAsync<Demo, DemoEntity>(table, _context.Demos, _mappingConfiguration, convertAllData, "Demo Sheet Name", "Fingers10");
         }
     }
 }

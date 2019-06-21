@@ -12,6 +12,8 @@ namespace AspNetCoreServerSide.Controllers
 {
     public class HomeController:Controller
     {
+		private const string _dataTableSessionKey = "DataTableSessionKey";
+
         private readonly IDemoService _demoService;
 
         public HomeController(IDemoService demoService)
@@ -54,15 +56,8 @@ namespace AspNetCoreServerSide.Controllers
         {
             try
             {
-                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters),JsonConvert.SerializeObject(param));
-                var results = await _demoService.GetDataAsync(param);
-
-                return new JsonResult(new JqueryDataTablesResult<Demo> {
-                    Draw = param.Draw,
-                    Data = results.Items,
-                    RecordsFiltered = results.TotalSize,
-                    RecordsTotal = results.TotalSize
-                });
+                HttpContext.Session.SetString(_dataTableSessionKey,JsonConvert.SerializeObject(param));
+                return Json(await _demoService.GetDataAsync(param));
             } catch(Exception e)
             {
                 Console.Write(e.Message);
@@ -70,12 +65,10 @@ namespace AspNetCoreServerSide.Controllers
             }
         }
 
-        public async Task<IActionResult> GetExcel()
+        public async Task<IActionResult> GetExcel(bool convertAllData = false)
         {
-            var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
-
-            var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
-            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+            var param = HttpContext.Session.GetString(_dataTableSessionKey);
+            return await _demoService.GetExcelDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param), convertAllData);
         }
     }
 }
