@@ -8,6 +8,6 @@ namespace AspNetCoreServerSide.Contracts
     public interface IDemoService
     {
         Task<JqueryDataTablesResult<Demo>> GetDataAsync(JqueryDataTablesParameters table);
-		Task<JqueryDataTablesExcelResult<Demo>> GetExcelDataAsync(JqueryDataTablesParameters table, bool convertAllData = false);
+		Task<JqueryDataTablesExcelResult<Demo>> GetExcelDataAsync(JqueryDataTablesParameters table, bool exportAllData = false);
     }
 }

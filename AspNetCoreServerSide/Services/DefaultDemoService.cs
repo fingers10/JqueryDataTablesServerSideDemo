@@ -28,9 +28,9 @@ namespace AspNetCoreServerSide.Services
 			return await JqueryDataTableHelpers.GetJqueryDataTablesResultAsync<Demo, DemoEntity>(table, _context.Demos, _mappingConfiguration);
         }
 
-		public async Task<JqueryDataTablesExcelResult<Demo>> GetExcelDataAsync(JqueryDataTablesParameters table, bool convertAllData = false)
+		public async Task<JqueryDataTablesExcelResult<Demo>> GetExcelDataAsync(JqueryDataTablesParameters table, bool exportAllData = false)
         {
-			return await JqueryDataTableHelpers.GetJqueryDataTablesExcelResultAsync<Demo, DemoEntity>(table, _context.Demos, _mappingConfiguration, convertAllData, "Demo Sheet Name", "Fingers10");
+			return await JqueryDataTableHelpers.GetJqueryDataTablesExcelResultAsync<Demo, DemoEntity>(table, _context.Demos, _mappingConfiguration, exportAllData, "Demo Sheet Name", "Fingers10");
         }
     }
 }

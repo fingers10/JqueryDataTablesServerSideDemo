@@ -65,10 +65,10 @@ namespace AspNetCoreServerSide.Controllers
             }
         }
 
-        public async Task<IActionResult> GetExcel(bool convertAllData = false)
+        public async Task<IActionResult> GetExcel(bool exportAllData = false)
         {
             var param = HttpContext.Session.GetString(_dataTableSessionKey);
-            return await _demoService.GetExcelDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param), convertAllData);
+            return await _demoService.GetExcelDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param), exportAllData);
         }
     }
 }
