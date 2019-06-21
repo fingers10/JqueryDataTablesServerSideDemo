@@ -182,6 +182,12 @@ $(() => {
                             table.column($(this).parent().index() + ':visible').search(this.value).draw();
                         }
                     });
+			// onblur event example
+			//$('#fingers10 thead tr:last th:eq(' + index + ') input').on('blur',
+			//	function () {
+			//		table.column($(this).parent().index() + ':visible').search(this.value).draw();
+			//  }
+			//);
         });
     }
 });
