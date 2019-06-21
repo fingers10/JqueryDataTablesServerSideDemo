@@ -96,7 +96,17 @@ $(() => {
                     text: 'Export to Excel',
                     className: 'btn btn-sm btn-dark',
                     action: function (e, dt, node, config) {
-                        window.location.href = "/Home/GetExcel";
+                        window.location.href = "/Home/GetExcel?exportAllData=false";
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    }
+                },
+				{
+                    text: 'Export to Excel All Data',
+                    className: 'btn btn-sm btn-dark',
+                    action: function (e, dt, node, config) {
+                        window.location.href = "/Home/GetExcel?exportAllData=true";
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
