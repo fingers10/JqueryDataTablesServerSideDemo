@@ -18,12 +18,12 @@ namespace AspNetCoreServerSide.Models
         [Sortable]
         public string Position { get; set; }
 
-        [SearchableString]
-        [Sortable]
-        public string Office { get; set; }
+        [SearchableString(EntityProperty = "Office")]
+        [Sortable(EntityProperty = "Office")]
+        public string Offices { get; set; }
 
         [NestedSearchable]
         [NestedSortable]
-        public DemoNestedLevelOne NestedLevelOne { get; set; }
+        public DemoNestedLevelOne DemoNestedLevelOne { get; set; }
     }
 }

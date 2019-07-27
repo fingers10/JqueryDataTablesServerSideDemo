@@ -23,7 +23,11 @@ namespace AspNetCoreServerSide.Services
 
         public async Task<JqueryDataTablesPagedResults<Demo>> GetDataAsync(JqueryDataTablesParameters table)
         {
-            IQueryable<DemoEntity> query = _context.Demos;
+            IQueryable<DemoEntity> query = _context.Demos
+                                                   .AsNoTracking()
+                                                   .Include(x => x.DemoNestedLevelOne)
+                                                   .ThenInclude(y => y.DemoNestedLevelTwo);
+
             query = new SearchOptionsProcessor<Demo,DemoEntity>().Apply(query,table.Columns);
             query = new SortOptionsProcessor<Demo,DemoEntity>().Apply(query,table);
 

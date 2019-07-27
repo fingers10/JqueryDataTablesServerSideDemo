@@ -6,10 +6,10 @@ namespace AspNetCoreServerSide.Models
 {
     public class DemoNestedLevelTwo
     {
-        [SearchableDateTime]
-        [Sortable]
+        [SearchableDateTime(EntityProperty = "StartDate")]
+        [Sortable(EntityProperty = "StartDate")]
         [DisplayName("Start Date")]
-        public DateTime? StartDate { get; set; }
+        public DateTime? StartDates { get; set; }
 
         [SearchableLong]
         [Sortable]

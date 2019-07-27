@@ -136,19 +136,19 @@ $(() => {
                     name: "co"
                 },
                 {
-                    data: "Office",
+                    data: "Offices",
                     name: "eq"
                 },
                 {
-                    data: "NestedLevelOne.Experience",
+                    data: "DemoNestedLevelOne.Experience",
                     name: "eq"
                 },
                 {
-                    data: "NestedLevelOne.Extn",
+                    data: "DemoNestedLevelOne.Extension",
                     name: "eq"
                 },
                 {
-                    data: "NestedLevelOne.NestedLevelTwo.StartDate",
+                    data: "DemoNestedLevelOne.DemoNestedLevelTwos.StartDates",
                     render: function (data, type, row) {
                         if (data)
                             return window.moment(data).format("DD/MM/YYYY");
@@ -158,7 +158,7 @@ $(() => {
                     name: "gt"
                 },
                 {
-                    data: "NestedLevelOne.NestedLevelTwo.Salary",
+                    data: "DemoNestedLevelOne.DemoNestedLevelTwos.Salary",
                     name: "lte"
                 }
             ]

@@ -11,6 +11,6 @@ namespace AspNetCoreServerSide.Models
         public string Position { get; set; }
         public string Office { get; set; }
 
-        public DemoNestedLevelOneEntity NestedLevelOne { get; set; }
+        public DemoNestedLevelOneEntity DemoNestedLevelOne { get; set; }
     }
 }

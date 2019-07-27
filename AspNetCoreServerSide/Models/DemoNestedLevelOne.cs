@@ -9,13 +9,13 @@ namespace AspNetCoreServerSide.Models
         [Sortable]
         public short? Experience { get; set; }
 
-        [SearchableInt]
-        [Sortable]
+        [SearchableInt(EntityProperty = "Extn")]
+        [Sortable(EntityProperty = "Extn")]
         [DisplayName("Extension")]
-        public int? Extn { get; set; }
+        public int? Extension { get; set; }
 
-        [NestedSearchable]
-        [NestedSortable]
-        public DemoNestedLevelTwo NestedLevelTwo { get; set; }
+        [NestedSearchable(ParentEntityProperty = "DemoNestedLevelTwo")]
+        [NestedSortable(ParentEntityProperty = "DemoNestedLevelTwo")]
+        public DemoNestedLevelTwo DemoNestedLevelTwos { get; set; }
     }
 }

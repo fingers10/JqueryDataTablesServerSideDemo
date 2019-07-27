@@ -10,6 +10,6 @@ namespace AspNetCoreServerSide.Models
         public short? Experience { get; set; }
         public int? Extn { get; set; }
 
-        public DemoNestedLevelTwoEntity NestedLevelTwo { get; set; }
+        public DemoNestedLevelTwoEntity DemoNestedLevelTwo { get; set; }
     }
 }

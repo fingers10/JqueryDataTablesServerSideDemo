@@ -7,11 +7,15 @@ namespace AspNetCoreServerSide.Infrastructure
     {
         public MappingProfile()
         {
-            CreateMap<DemoEntity, Demo>();
+            CreateMap<DemoEntity, Demo>()
+                .ForMember(dest => dest.Offices, opts => opts.MapFrom(src => src.Office));
 
-            CreateMap<DemoNestedLevelOneEntity, DemoNestedLevelOne>();
+            CreateMap<DemoNestedLevelOneEntity, DemoNestedLevelOne>()
+                .ForMember(dest => dest.Extension, opts => opts.MapFrom(src => src.Extn))
+                .ForMember(dest => dest.DemoNestedLevelTwos, opts => opts.MapFrom(src => src.DemoNestedLevelTwo));
 
-            CreateMap<DemoNestedLevelTwoEntity, DemoNestedLevelTwo>();
+            CreateMap<DemoNestedLevelTwoEntity, DemoNestedLevelTwo>()
+                .ForMember(dest => dest.StartDates, opts => opts.MapFrom(src => src.StartDate));
         }
     }
 }
