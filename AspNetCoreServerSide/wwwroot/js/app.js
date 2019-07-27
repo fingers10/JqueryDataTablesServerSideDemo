@@ -140,15 +140,15 @@ $(() => {
                     name: "eq"
                 },
                 {
-                    data: "Experience",
+                    data: "NestedLevelOne.Experience",
                     name: "eq"
                 },
                 {
-                    data: "Extn",
+                    data: "NestedLevelOne.Extn",
                     name: "eq"
                 },
                 {
-                    data: "StartDate",
+                    data: "NestedLevelOne.NestedLevelTwo.StartDate",
                     render: function (data, type, row) {
                         if (data)
                             return window.moment(data).format("DD/MM/YYYY");
@@ -158,7 +158,7 @@ $(() => {
                     name: "gt"
                 },
                 {
-                    data: "Salary",
+                    data: "NestedLevelOne.NestedLevelTwo.Salary",
                     name: "lte"
                 }
             ]

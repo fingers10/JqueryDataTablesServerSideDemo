@@ -6,6 +6,8 @@ namespace AspNetCoreServerSide.Models
 {
     public class Demo
     {
+        [SearchableInt]
+        [Sortable]
         public int Id { get; set; }
 
         [SearchableString]
@@ -20,22 +22,8 @@ namespace AspNetCoreServerSide.Models
         [Sortable]
         public string Office { get; set; }
 
-        [SearchableShort]
-        [Sortable]
-        public short? Experience { get; set; }
-
-        [SearchableInt]
-        [Sortable]
-        [DisplayName("Extension")]
-        public int? Extn { get; set; }
-
-        [SearchableDateTime]
-        [Sortable]
-        [DisplayName("Start Date")]
-        public DateTime? StartDate { get; set; }
-
-        [SearchableLong]
-        [Sortable]
-        public long? Salary { get; set; }
+        [NestedSearchable]
+        [NestedSortable]
+        public DemoNestedLevelOne NestedLevelOne { get; set; }
     }
 }

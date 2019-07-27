@@ -8,6 +8,10 @@ namespace AspNetCoreServerSide.Infrastructure
         public MappingProfile()
         {
             CreateMap<DemoEntity, Demo>();
+
+            CreateMap<DemoNestedLevelOneEntity, DemoNestedLevelOne>();
+
+            CreateMap<DemoNestedLevelTwoEntity, DemoNestedLevelTwo>();
         }
     }
 }
