@@ -16,6 +16,8 @@ namespace AspNetCoreServerSide.Infrastructure
 
             CreateMap<DemoNestedLevelTwoEntity, DemoNestedLevelTwo>()
                 .ForMember(dest => dest.StartDates, opts => opts.MapFrom(src => src.StartDate));
+
+            CreateMap<Demo, DemoExcel>();
         }
     }
 }

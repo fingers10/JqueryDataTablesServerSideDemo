@@ -11,7 +11,6 @@ namespace AspNetCoreServerSide.Models
 
         [SearchableInt(EntityProperty = "Extn")]
         [Sortable(EntityProperty = "Extn")]
-        [DisplayName("Extension")]
         public int? Extension { get; set; }
 
         [NestedSearchable(ParentEntityProperty = "DemoNestedLevelTwo")]

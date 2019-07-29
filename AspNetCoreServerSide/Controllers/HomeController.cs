@@ -1,22 +1,26 @@
 ﻿using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Models;
+using AutoMapper;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AspNetCoreServerSide.Controllers
 {
-    public class HomeController:Controller
+    public class HomeController : Controller
     {
         private readonly IDemoService _demoService;
+        private readonly IMapper _mapper;
 
-        public HomeController(IDemoService demoService)
+        public HomeController(IDemoService demoService, IMapper mapper)
         {
             _demoService = demoService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -54,16 +58,18 @@ namespace AspNetCoreServerSide.Controllers
         {
             try
             {
-                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters),JsonConvert.SerializeObject(param));
+                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters), JsonConvert.SerializeObject(param));
                 var results = await _demoService.GetDataAsync(param);
 
-                return new JsonResult(new JqueryDataTablesResult<Demo> {
+                return new JsonResult(new JqueryDataTablesResult<Demo>
+                {
                     Draw = param.Draw,
                     Data = results.Items,
                     RecordsFiltered = results.TotalSize,
                     RecordsTotal = results.TotalSize
                 });
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.Write(e.Message);
                 return new JsonResult(new { error = "Internal Server Error" });
@@ -75,7 +81,7 @@ namespace AspNetCoreServerSide.Controllers
             var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
 
             var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
-            return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+            return new JqueryDataTablesExcelResult<DemoExcel>(_mapper.Map<List<DemoExcel>>(results.Items), "Demo Sheet Name", "Fingers10");
         }
     }
 }
