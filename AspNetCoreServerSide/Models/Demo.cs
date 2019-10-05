@@ -1,6 +1,7 @@
 ﻿using JqueryDataTables.ServerSide.AspNetCoreWeb.Attributes;
 using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspNetCoreServerSide.Models
 {
@@ -18,6 +19,7 @@ namespace AspNetCoreServerSide.Models
         [Sortable]
         public string Position { get; set; }
 
+        [Display(Name = "Office")]
         [SearchableString(EntityProperty = "Office")]
         [Sortable(EntityProperty = "Office")]
         public string Offices { get; set; }
