@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreServerSide.Services
 {
-    public class DefaultDemoService:IDemoService
+    public class DefaultDemoService : IDemoService
     {
         private readonly Fingers10DbContext _context;
         private readonly IConfigurationProvider _mappingConfiguration;
 
-        public DefaultDemoService(Fingers10DbContext context,IConfigurationProvider mappingConfiguration)
+        public DefaultDemoService(Fingers10DbContext context, IConfigurationProvider mappingConfiguration)
         {
             _context = context;
             _mappingConfiguration = mappingConfiguration;
@@ -28,8 +28,8 @@ namespace AspNetCoreServerSide.Services
                                                    .Include(x => x.DemoNestedLevelOne)
                                                    .ThenInclude(y => y.DemoNestedLevelTwo);
 
-            query = new SearchOptionsProcessor<Demo,DemoEntity>().Apply(query,table.Columns);
-            query = new SortOptionsProcessor<Demo,DemoEntity>().Apply(query,table);
+            query = new SearchOptionsProcessor<Demo, DemoEntity>().Apply(query, table.Columns);
+            query = new SortOptionsProcessor<Demo, DemoEntity>().Apply(query, table);
 
             var size = await query.CountAsync();
 
@@ -40,7 +40,8 @@ namespace AspNetCoreServerSide.Services
                 .ProjectTo<Demo>(_mappingConfiguration)
                 .ToArrayAsync();
 
-            return new JqueryDataTablesPagedResults<Demo> {
+            return new JqueryDataTablesPagedResults<Demo>
+            {
                 Items = items,
                 TotalSize = size
             };
