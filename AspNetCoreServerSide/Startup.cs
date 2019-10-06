@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
 
 namespace AspNetCoreServerSide
 {
@@ -27,7 +26,6 @@ namespace AspNetCoreServerSide
                 });
 
             services.AddControllersWithViews()
-                    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
                     .AddJqueryDataTables();
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
