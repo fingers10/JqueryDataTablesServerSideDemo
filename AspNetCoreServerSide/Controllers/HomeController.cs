@@ -34,13 +34,15 @@ namespace AspNetCoreServerSide.Controllers
         //    {
         //        var results = await _demoService.GetDataAsync(param);
 
-        //        return new JsonResult(new JqueryDataTablesResult<Demo> {
+        //        return new JsonResult(new JqueryDataTablesResult<Demo>
+        //        {
         //            Draw = param.Draw,
         //            Data = results.Items,
         //            RecordsFiltered = results.TotalSize,
         //            RecordsTotal = results.TotalSize
         //        });
-        //    } catch(Exception e)
+        //    }
+        //    catch (Exception e)
         //    {
         //        Console.Write(e.Message);
         //        return new JsonResult(new { error = "Internal Server Error" });
@@ -50,7 +52,7 @@ namespace AspNetCoreServerSide.Controllers
         //public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
         //{
         //    var results = await _demoService.GetDataAsync(param);
-        //    return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+        //    return new JqueryDataTablesExcelResult<Demo>(results.Items, "Demo Sheet Name", "Fingers10");
         //}
 
         [HttpPost]
