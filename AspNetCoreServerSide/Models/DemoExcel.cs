@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace AspNetCoreServerSide.Models
 {
@@ -15,7 +16,7 @@ namespace AspNetCoreServerSide.Models
         [DisplayName("Experience")]
         public short? DemoNestedLevelOneExperience { get; set; }
 
-        [DisplayName("Extension")]
+        [Display(Name = "Extn")]
         public int? DemoNestedLevelOneExtension { get; set; }
 
         [DisplayName("Start Date")]

@@ -8,16 +8,11 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="JqueryDataTables.ServerSide.AspNetCoreWeb" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="JqueryDataTables.ServerSide.AspNetCoreWeb">
-      <HintPath>..\..\JqueryDataTablesServerSide\AspNetCoreWeb\bin\Release\netcoreapp3.0\JqueryDataTables.ServerSide.AspNetCoreWeb.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
