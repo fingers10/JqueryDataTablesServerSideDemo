@@ -47,33 +47,36 @@ $(() => {
         //        },
         //        {
         //            data: "Name",
-        //            name: "eq"
+        //            name: "co"
         //        },
         //        {
         //            data: "Position",
         //            name: "co"
         //        },
         //        {
-        //            data: "Office",
+        //            data: "Offices",
         //            name: "eq"
         //        },
         //        {
-        //            data: "Experience",
+        //            data: "DemoNestedLevelOne.Experience",
         //            name: "eq"
         //        },
         //        {
-        //            data: "Extn",
+        //            data: "DemoNestedLevelOne.Extension",
         //            name: "eq"
         //        },
         //        {
-        //            data: "StartDate",
+        //            data: "DemoNestedLevelOne.DemoNestedLevelTwos.StartDates",
         //            render: function (data, type, row) {
-        //                return window.moment(data).format("DD/MM/YYYY");
+        //                if (data)
+        //                    return window.moment(data).format("DD/MM/YYYY");
+        //                else
+        //                    return null;
         //            },
         //            name: "gt"
         //        },
         //        {
-        //            data: "Salary",
+        //            data: "DemoNestedLevelOne.DemoNestedLevelTwos.Salary",
         //            name: "lte"
         //        }
         //    ]

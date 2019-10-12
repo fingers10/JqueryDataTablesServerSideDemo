@@ -5,9 +5,9 @@ using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AspNetCoreServerSide.Controllers
@@ -34,13 +34,15 @@ namespace AspNetCoreServerSide.Controllers
         //    {
         //        var results = await _demoService.GetDataAsync(param);
 
-        //        return new JsonResult(new JqueryDataTablesResult<Demo> {
+        //        return new JsonResult(new JqueryDataTablesResult<Demo>
+        //        {
         //            Draw = param.Draw,
         //            Data = results.Items,
         //            RecordsFiltered = results.TotalSize,
         //            RecordsTotal = results.TotalSize
         //        });
-        //    } catch(Exception e)
+        //    }
+        //    catch (Exception e)
         //    {
         //        Console.Write(e.Message);
         //        return new JsonResult(new { error = "Internal Server Error" });
@@ -50,7 +52,7 @@ namespace AspNetCoreServerSide.Controllers
         //public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
         //{
         //    var results = await _demoService.GetDataAsync(param);
-        //    return new JqueryDataTablesExcelResult<Demo>(results.Items,"Demo Sheet Name","Fingers10");
+        //    return new JqueryDataTablesExcelResult<Demo>(results.Items, "Demo Sheet Name", "Fingers10");
         //}
 
         [HttpPost]
@@ -58,7 +60,7 @@ namespace AspNetCoreServerSide.Controllers
         {
             try
             {
-                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters), JsonConvert.SerializeObject(param));
+                HttpContext.Session.SetString(nameof(JqueryDataTablesParameters), JsonSerializer.Serialize(param));
                 var results = await _demoService.GetDataAsync(param);
 
                 return new JsonResult(new JqueryDataTablesResult<Demo>
@@ -80,7 +82,7 @@ namespace AspNetCoreServerSide.Controllers
         {
             var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
 
-            var results = await _demoService.GetDataAsync(JsonConvert.DeserializeObject<JqueryDataTablesParameters>(param));
+            var results = await _demoService.GetDataAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
             return new JqueryDataTablesExcelResult<DemoExcel>(_mapper.Map<List<DemoExcel>>(results.Items), "Demo Sheet Name", "Fingers10");
         }
     }
