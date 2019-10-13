@@ -28,7 +28,7 @@ namespace AspNetCoreServerSide.Controllers
             return View(new Demo());
         }
 
-        //public async Task<IActionResult> LoadTable(JqueryDataTablesParameters param)
+        //public async Task<IActionResult> LoadTable([ModelBinder(typeof(JqueryDataTablesBinder))] JqueryDataTablesParameters param)
         //{
         //    try
         //    {
@@ -49,7 +49,7 @@ namespace AspNetCoreServerSide.Controllers
         //    }
         //}
 
-        //public async Task<IActionResult> GetExcel(JqueryDataTablesParameters param)
+        //public async Task<IActionResult> GetExcel([ModelBinder(typeof(JqueryDataTablesBinder))] JqueryDataTablesParameters param)
         //{
         //    var results = await _demoService.GetDataAsync(param);
         //    return new JqueryDataTablesExcelResult<Demo>(results.Items, "Demo Sheet Name", "Fingers10");

@@ -1,12 +1,12 @@
 ﻿using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Services;
 using AutoMapper;
-using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 
 namespace AspNetCoreServerSide
 {
@@ -26,7 +26,12 @@ namespace AspNetCoreServerSide
                 });
 
             services.AddControllersWithViews()
-                    .AddJqueryDataTables();
+            //    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+                .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
         }
