@@ -28,8 +28,8 @@ namespace AspNetCoreServerSide.Services
                                                    .Include(x => x.DemoNestedLevelOne)
                                                    .ThenInclude(y => y.DemoNestedLevelTwo);
 
-            query = new SearchOptionsProcessor<Demo, DemoEntity>().Apply(query, table.Columns);
-            query = new SortOptionsProcessor<Demo, DemoEntity>().Apply(query, table);
+            query = SearchOptionsProcessor<Demo, DemoEntity>.Apply(query, table.Columns);
+            query = SortOptionsProcessor<Demo, DemoEntity>.Apply(query, table);
 
             var size = await query.CountAsync();
 
