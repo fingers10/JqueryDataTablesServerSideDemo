@@ -26,12 +26,12 @@ namespace AspNetCoreServerSide
                 });
 
             services.AddControllersWithViews()
-            //    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-                .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                options.JsonSerializerOptions.PropertyNamingPolicy = null;
-            });
+                    //.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+                    .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    });
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
         }
