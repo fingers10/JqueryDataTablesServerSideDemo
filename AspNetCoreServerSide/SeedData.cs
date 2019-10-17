@@ -27,7 +27,7 @@ namespace AspNetCoreServerSide
             {
                 new DemoEntity {
                     Name = "Airi Satou",
-                    Position = "Accountant",
+                    Position = Position.Accountant,
                     Office = "Tokyo",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -42,7 +42,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Angelica Ramos",
-                    Position = "Chief Executive Officer (CEO)",
+                    Position = Position.ChiefExecutiveOfficer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -57,7 +57,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Ashton Cox",
-                    Position = "Junior Technical Author",
+                    Position = Position.JuniorTechnicalAuthor,
                     Office = "San Francisco",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -72,7 +72,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Bradley Greer",
-                    Position = "Software Engineer",
+                    Position = Position.SoftwareEngineer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -87,7 +87,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Brenden Wagner",
-                    Position = "Software Engineer",
+                    Position = Position.SoftwareEngineer,
                     Office = "San Francisco",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -102,7 +102,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Brielle Williamson",
-                    Position = "Integration Specialist",
+                    Position = Position.IntegrationSpecialist,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -117,7 +117,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Bruno Nash",
-                    Position = "Software Engineer",
+                    Position = Position.SoftwareEngineer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -132,7 +132,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Caesar Vance",
-                    Position = "Pre-Sales Support",
+                    Position = Position.PreSalesSupport,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -147,7 +147,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Cara Stevens",
-                    Position = "Sales Assistant",
+                    Position = Position.SalesAssistant,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {
@@ -162,7 +162,7 @@ namespace AspNetCoreServerSide
                 },
                 new DemoEntity {
                     Name = "Cedric Kelly",
-                    Position = "Senior Javascript Developer",
+                    Position = Position.SeniorJavascriptDeveloper,
                     Office = "Edinburgh",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
                     {

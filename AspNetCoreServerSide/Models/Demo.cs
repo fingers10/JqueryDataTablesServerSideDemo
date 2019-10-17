@@ -13,7 +13,7 @@ namespace AspNetCoreServerSide.Models
         [Sortable(Default = true)]
         public string Name { get; set; }
 
-        [SearchableString]
+        [SearchableEnum(typeof(Position))]
         [Sortable]
         public string Position { get; set; }
 

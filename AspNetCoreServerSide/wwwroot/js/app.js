@@ -51,7 +51,7 @@ $(() => {
         //        },
         //        {
         //            data: "Position",
-        //            name: "co"
+        //            name: "eq"
         //        },
         //        {
         //            data: "Offices",
@@ -136,7 +136,7 @@ $(() => {
                 },
                 {
                     data: "Position",
-                    name: "co"
+                    name: "eq"
                 },
                 {
                     data: "Offices",
