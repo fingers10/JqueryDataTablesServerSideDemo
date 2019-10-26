@@ -46,5 +46,44 @@ namespace AspNetCoreServerSide.Services
                 TotalSize = size
             };
         }
+
+        public async Task<Demo> GetDataByIdAsync(int id)
+        {
+            var item = await _context.Demos.AsNoTracking()
+                                           .Include(x => x.DemoNestedLevelOne)
+                                           .ThenInclude(y => y.DemoNestedLevelTwo)
+                                           .SingleOrDefaultAsync(x => x.Id.Equals(id));
+
+            return _mappingConfiguration.CreateMapper().Map<Demo>(item);
+        }
+
+        public async Task CreateDataAsync(Demo demo)
+        {
+            var entity = _mappingConfiguration.CreateMapper().Map<DemoEntity>(demo);
+
+            await _context.Demos.AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDataAsync(Demo demo)
+        {
+            var entity = await _context.Demos.AsNoTracking()
+                                           .Include(x => x.DemoNestedLevelOne)
+                                           .ThenInclude(y => y.DemoNestedLevelTwo)
+                                           .SingleOrDefaultAsync(x => x.Id.Equals(demo.Id));
+
+            entity = _mappingConfiguration.CreateMapper().Map(demo, entity);
+
+            _context.Demos.Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteDataAsync(int id)
+        {
+            var item = await _context.Demos.FindAsync(id);
+
+            _context.Demos.Remove(item);
+            await _context.SaveChangesAsync();
+        }
     }
 }

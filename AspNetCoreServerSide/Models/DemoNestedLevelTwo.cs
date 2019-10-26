@@ -14,5 +14,7 @@ namespace AspNetCoreServerSide.Models
         [SearchableLong]
         [Sortable]
         public long? Salary { get; set; }
+
+        public string Action { get; set; }
     }
 }

@@ -5,8 +5,11 @@ namespace AspNetCoreServerSide.Models
 {
     public class Demo
     {
-        [SearchableInt]
-        [Sortable]
+        public Demo()
+        {
+            DemoNestedLevelOne = new DemoNestedLevelOne();
+        }
+
         public int Id { get; set; }
 
         [SearchableString]
