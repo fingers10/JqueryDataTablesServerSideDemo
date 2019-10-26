@@ -5,6 +5,11 @@ namespace AspNetCoreServerSide.Models
 {
     public class DemoNestedLevelOne
     {
+        public DemoNestedLevelOne()
+        {
+            DemoNestedLevelTwos = new DemoNestedLevelTwo();
+        }
+
         [SearchableShort]
         [Sortable]
         public short? Experience { get; set; }

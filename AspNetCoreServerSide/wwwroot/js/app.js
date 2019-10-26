@@ -104,6 +104,16 @@ $(() => {
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
                     }
+                },
+                {
+                    text: 'Create',
+                    className: 'btn btn-sm btn-success',
+                    action: function (e, dt, node, config) {
+                        $('#createModal').modal('show');
+                    },
+                    init: function (api, node, config) {
+                        $(node).removeClass('dt-button');
+                    }
                 }
             ],
             ajax: {
@@ -128,7 +138,8 @@ $(() => {
                     data: "Id",
                     name: "eq",
                     visible: false,
-                    searchable: false
+                    searchable: false,
+                    orderable: false
                 },
                 {
                     data: "Name",
@@ -163,6 +174,17 @@ $(() => {
                 {
                     data: "DemoNestedLevelOne.DemoNestedLevelTwos.Salary",
                     name: "lte"
+                },
+                {
+                    orderable: false,
+                    width: 100,
+                    data: "DemoNestedLevelOne.DemoNestedLevelTwos.Action",
+                    render: function (data, type, row) {
+                        return `<div>
+                                    <button type="button" class="btn btn-sm btn-info mr-2 btnEdit" data-key="${row.Id}">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-danger btnDelete" data-key="${row.Id}">Delete</button>
+                                </div>`;
+                    }
                 }
             ]
         });
@@ -176,5 +198,85 @@ $(() => {
                         }
                     });
         });
+
+        $(document)
+            .off('click', '#btnCreate')
+            .on('click', '#btnCreate', function () {
+                fetch('/Home/Create/',
+                    {
+                        method: 'POST',
+                        cache: 'no-cache',
+                        body: new URLSearchParams(new FormData(document.querySelector('#frmCreate')))
+                    })
+                    .then((response) => {
+                        table.ajax.reload();
+                        $('#createModal').modal('hide');
+                        document.querySelector('#frmCreate').reset();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+
+        $(document)
+            .off('click', '.btnEdit')
+            .on('click', '.btnEdit', function () {
+                const id = $(this).attr('data-key');
+
+                fetch(`/Home/Edit/${id}`,
+                    {
+                        method: 'GET',
+                        cache: 'no-cache'
+                    })
+                    .then((response) => {
+                        return response.text();
+                    })
+                    .then((result) => {
+                        $('#editPartial').html(result);
+                        $('#editModal').modal('show');
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+
+        $(document)
+            .off('click', '#btnUpdate')
+            .on('click', '#btnUpdate', function () {
+                fetch('/Home/Edit/',
+                    {
+                        method: 'PUT',
+                        cache: 'no-cache',
+                        body: new URLSearchParams(new FormData(document.querySelector('#frmEdit')))
+                    })
+                    .then((response) => {
+                        table.ajax.reload();
+                        $('#editModal').modal('hide');
+                        $('#editPartial').html('');
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+
+        $(document)
+            .off('click', '.btnDelete')
+            .on('click', '.btnDelete', function () {
+                const id = $(this).attr('data-key');
+
+                if (confirm('Are you sure?')) {
+                    fetch(`/Home/Delete/${id}`,
+                        {
+                            method: 'DELETE',
+                            cache: 'no-cache'
+                        })
+                        .then((response) => {
+                            table.ajax.reload();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            });
     }
 });

@@ -85,5 +85,36 @@ namespace AspNetCoreServerSide.Controllers
             var results = await _demoService.GetDataAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
             return new JqueryDataTablesExcelResult<DemoExcel>(_mapper.Map<List<DemoExcel>>(results.Items), "Demo Sheet Name", "Fingers10");
         }
+
+        [HttpPost]
+        public async Task<NoContentResult> Create(Demo item)
+        {
+            await _demoService.CreateDataAsync(item);
+
+            return NoContent();
+        }
+
+        public async Task<ActionResult> Edit(int id)
+        {
+            var item = await _demoService.GetDataByIdAsync(id);
+
+            return PartialView("_Edit", item);
+        }
+
+        [HttpPut]
+        public async Task<NoContentResult> Edit(Demo item)
+        {
+            await _demoService.UpdateDataAsync(item);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<NoContentResult> Delete(int id)
+        {
+            await _demoService.DeleteDataAsync(id);
+
+            return NoContent();
+        }
     }
 }
