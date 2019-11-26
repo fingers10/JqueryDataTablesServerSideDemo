@@ -12,11 +12,15 @@ namespace AspNetCoreServerSide.Models
 
         public int Id { get; set; }
 
-        [SearchableString]
-        [Sortable(Default = true)]
+        [SearchableString(EntityProperty = "FirstName,LastName")]
+        [Sortable(EntityProperty = "FirstName,LastName", Default = true)]
         public string Name { get; set; }
 
-        [SearchableString]
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        [SearchableEnum(typeof(Position))]
         [Sortable]
         public string Position { get; set; }
 
