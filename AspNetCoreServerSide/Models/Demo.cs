@@ -16,8 +16,10 @@ namespace AspNetCoreServerSide.Models
         [Sortable(EntityProperty = "FirstName,LastName", Default = true)]
         public string Name { get; set; }
 
+        [ExcludeFromJqueryDataTable]
         public string FirstName { get; set; }
 
+        [ExcludeFromJqueryDataTable]
         public string LastName { get; set; }
 
         [SearchableEnum(typeof(Position))]

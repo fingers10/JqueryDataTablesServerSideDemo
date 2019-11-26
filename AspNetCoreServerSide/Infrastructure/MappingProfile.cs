@@ -12,7 +12,9 @@ namespace AspNetCoreServerSide.Infrastructure
                 .ForMember(dest => dest.Name, opts => opts.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ForMember(dest => dest.Position, opts => opts.MapFrom(src => EnumHelper<Position>.GetDisplayValue(src.Position)))
                 .ForMember(dest => dest.Offices, opts => opts.MapFrom(src => src.Office))
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dest => dest.FirstName, opts => opts.MapFrom(src => SplitHelper.Split(src.Name, ' ', 0)))
+                .ForMember(dest => dest.LastName, opts => opts.MapFrom(src => SplitHelper.Split(src.Name, ' ', 1)));
 
             CreateMap<DemoNestedLevelOneEntity, DemoNestedLevelOne>()
                 .ForMember(dest => dest.Extension, opts => opts.MapFrom(src => src.Extn))
