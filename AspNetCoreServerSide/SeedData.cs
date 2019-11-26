@@ -26,7 +26,8 @@ namespace AspNetCoreServerSide
             var testData = new List<DemoEntity>()
             {
                 new DemoEntity {
-                    Name = "Airi Satou",
+                    FirstName = "Airi",
+                    LastName = "Satou",
                     Position = Position.Accountant,
                     Office = "Tokyo",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -41,7 +42,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Angelica Ramos",
+                    FirstName = "Angelica",
+                    LastName = "Ramos",
                     Position = Position.ChiefExecutiveOfficer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -56,7 +58,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Ashton Cox",
+                    FirstName = "Ashton",
+                    LastName = "Cox",
                     Position = Position.JuniorTechnicalAuthor,
                     Office = "San Francisco",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -71,7 +74,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Bradley Greer",
+                    FirstName = "Bradley",
+                    LastName = "Greer",
                     Position = Position.SoftwareEngineer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -86,7 +90,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Brenden Wagner",
+                    FirstName = "Brenden",
+                    LastName = "Wagner",
                     Position = Position.SoftwareEngineer,
                     Office = "San Francisco",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -101,7 +106,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Brielle Williamson",
+                    FirstName = "Brielle",
+                    LastName = "Williamson",
                     Position = Position.IntegrationSpecialist,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -116,7 +122,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Bruno Nash",
+                    FirstName = "Bruno",
+                    LastName = "Nash",
                     Position = Position.SoftwareEngineer,
                     Office = "London",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -131,7 +138,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Caesar Vance",
+                    FirstName = "Caesar",
+                    LastName = "Vance",
                     Position = Position.PreSalesSupport,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -146,7 +154,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Cara Stevens",
+                    FirstName = "Cara",
+                    LastName = "Stevens",
                     Position = Position.SalesAssistant,
                     Office = "New York",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
@@ -161,7 +170,8 @@ namespace AspNetCoreServerSide
                     }
                 },
                 new DemoEntity {
-                    Name = "Cedric Kelly",
+                    FirstName = "Cedric",
+                    LastName = "Kelly",
                     Position = Position.SeniorJavascriptDeveloper,
                     Office = "Edinburgh",
                     DemoNestedLevelOne = new DemoNestedLevelOneEntity
