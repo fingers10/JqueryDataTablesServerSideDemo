@@ -10,23 +10,27 @@ namespace AspNetCoreServerSide.Models
             DemoNestedLevelOne = new DemoNestedLevelOne();
         }
 
+        [JqueryDataTableColumn(Order = 1)]
         public int Id { get; set; }
 
+        [JqueryDataTableColumn(Order = 2)]
         [SearchableString(EntityProperty = "FirstName,LastName")]
         [Sortable(EntityProperty = "FirstName,LastName", Default = true)]
         public string Name { get; set; }
 
-        [ExcludeFromJqueryDataTable]
+        [JqueryDataTableColumn(Exclude = true)]
         public string FirstName { get; set; }
 
-        [ExcludeFromJqueryDataTable]
+        [JqueryDataTableColumn(Exclude = true)]
         public string LastName { get; set; }
 
+        [JqueryDataTableColumn(Order = 3)]
         [SearchableEnum(typeof(Position))]
         [Sortable]
         public string Position { get; set; }
 
         [Display(Name = "Office")]
+        [JqueryDataTableColumn(Order = 4)]
         [SearchableString(EntityProperty = "Office")]
         [Sortable(EntityProperty = "Office")]
         public string Offices { get; set; }
