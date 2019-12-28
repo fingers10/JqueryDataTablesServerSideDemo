@@ -61,23 +61,6 @@ namespace AspNetCoreServerSide.Controllers
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(param.AdditionalValues.Last()))
-                {
-                    var dtColumn = new DTColumn
-                    {
-                        Name = "co", // search operator
-                        Data = "Name", // column name
-                        Search = new DTSearch
-                        {
-                            Value = param.AdditionalValues.Last() // external search value
-                        },
-                        Orderable = true,
-                        Searchable = true
-                    };
-
-                    param.Columns[1] = dtColumn;
-                }
-
                 HttpContext.Session.SetString(nameof(JqueryDataTablesParameters), JsonSerializer.Serialize(param));
                 var results = await _demoService.GetDataAsync(param);
 
