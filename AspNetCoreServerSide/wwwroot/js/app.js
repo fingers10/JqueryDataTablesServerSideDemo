@@ -128,6 +128,7 @@ $(() => {
                     let additionalValues = [];
                     additionalValues[0] = "Additional Parameters 1";
                     additionalValues[1] = "Additional Parameters 2";
+                    additionalValues[2] = $('#txtExternalSearch').val();
                     data.AdditionalValues = additionalValues;
 
                     return JSON.stringify(data);
@@ -278,5 +279,9 @@ $(() => {
                         });
                 }
             });
+
+        $('#btnExternalSearch').click(function () {
+            table.ajax.reload();
+        });
     }
 });

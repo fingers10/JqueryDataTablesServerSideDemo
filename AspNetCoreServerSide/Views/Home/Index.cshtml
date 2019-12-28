@@ -27,6 +27,12 @@
                             <p class="text-center">Asp.Net Core - Jquery DataTables Server Side Multi Column Filtering And Ordering With Pagination And Excel Export Demo.</p>
                         </div>
                         <div class="card-body">
+                            <div class="input-group mb-3">
+                                <input type="text" id="txtExternalSearch" class="form-control" placeholder="External Search" aria-label="External Search" aria-describedby="btnExternalSearch">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="btnExternalSearch">Search</button>
+                                </div>
+                            </div>
                             <jquery-datatables id="fingers10"
                                                class="table table-sm table-dark table-bordered table-hover"
                                                model="@Model"
