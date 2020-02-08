@@ -13,7 +13,7 @@ $(() => {
         //    orderCellsTop: true,
         //    autoWidth: true,
         //    deferRender: true,
-        //    lengthMenu: [5, 10, 15, 20],
+        //    lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
         //    dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
         //    buttons: [
         //        {
@@ -92,7 +92,7 @@ $(() => {
             orderCellsTop: true,
             autoWidth: true,
             deferRender: true,
-            lengthMenu: [5, 10, 15, 20],
+            lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
             dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
             buttons: [
                 {

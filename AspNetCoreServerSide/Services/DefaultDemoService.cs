@@ -23,6 +23,7 @@ namespace AspNetCoreServerSide.Services
 
         public async Task<JqueryDataTablesPagedResults<Demo>> GetDataAsync(JqueryDataTablesParameters table)
         {
+            Demo[] items = null;
             IQueryable<DemoEntity> query = _context.Demos
                                                    .AsNoTracking()
                                                    .Include(x => x.DemoNestedLevelOne)
@@ -33,12 +34,20 @@ namespace AspNetCoreServerSide.Services
 
             var size = await query.CountAsync();
 
-            var items = await query
-                .AsNoTracking()
+            if (table.Length > 0)
+            {
+                items = await query
                 .Skip((table.Start / table.Length) * table.Length)
                 .Take(table.Length)
                 .ProjectTo<Demo>(_mappingConfiguration)
                 .ToArrayAsync();
+            }
+            else
+            {
+                items = await query
+                .ProjectTo<Demo>(_mappingConfiguration)
+                .ToArrayAsync();
+            }
 
             return new JqueryDataTablesPagedResults<Demo>
             {
