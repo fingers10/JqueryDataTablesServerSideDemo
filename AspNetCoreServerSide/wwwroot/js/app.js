@@ -97,14 +97,36 @@ $(() => {
             buttons: [
                 {
                     text: 'Export to Excel',
-                    className: 'btn btn-sm btn-dark',
+                    className: 'btn btn-sm btn-dark btn-export-excel',
                     action: function (e, dt, node, config) {
-                        window.location.href = "/Home/GetExcel";
+                        var t = e.target;
+                        var $checkbox = $('#displayedDataOnly');
+                        var displayedDataOnly = $checkbox.val();
+                        if (t.nodeName !== 'BUTTON') {
+                            e.preventDefault();
+                            if (displayedDataOnly === 'true') {
+                                $checkbox.prop("checked", false);
+                                displayedDataOnly = $checkbox.val('false');
+                            }
+                            else {
+                                $checkbox.prop("checked", true);
+                                displayedDataOnly = $checkbox.val('true');
+                            }
+
+                            return;
+                        }
+                        else
+                            window.location.href = `/Home/GetExcel?displayedDataOnly=${displayedDataOnly}`;
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('dt-button');
+                        $(node).html(`Export to Excel <div class="form-check form-check-inline" style="display:inline-flex; margin:0;background: goldenrod;">
+  <input style="cursor: pointer;" class="form-check-input" type="checkbox" id="displayedDataOnly" value="true" checked="checked">
+  <label style="cursor: pointer;" class="form-check-label" for="displayedDataOnly">displayed data only</label>
+</div>`)
                     }
                 },
+
                 {
                     text: 'Create',
                     className: 'btn btn-sm btn-success',

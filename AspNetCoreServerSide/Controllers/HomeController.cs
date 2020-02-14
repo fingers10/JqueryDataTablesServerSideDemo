@@ -78,11 +78,12 @@ namespace AspNetCoreServerSide.Controllers
             }
         }
 
-        public async Task<IActionResult> GetExcel()
+        public async Task<IActionResult> GetExcel(bool displayedDataOnly)
         {
             var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
-
-            var results = await _demoService.GetDataAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
+            var _param = JsonSerializer.Deserialize<JqueryDataTablesParameters>(param);
+            _param.Length = displayedDataOnly ? _param.Length  : -1;
+            var results = await _demoService.GetDataAsync(_param);
             return new JqueryDataTablesExcelResult<DemoExcel>(_mapper.Map<List<DemoExcel>>(results.Items), "Demo Sheet Name", "Fingers10");
         }
 
