@@ -1,7 +1,5 @@
-﻿using AspNetCoreServerSide.Helpers;
-using AspNetCoreServerSide.Models;
+﻿using AspNetCoreServerSide.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreServerSide
 {
@@ -14,9 +12,11 @@ namespace AspNetCoreServerSide
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var converter = new ValueConverter<Position, string>(
-                v => EnumHelper<Position>.GetDisplayValue(v),
-                v => EnumHelper<Position>.Parse(v.Trim().Replace(" ", string.Empty)));
+            modelBuilder
+                .Entity<DemoEntity>()
+                .Property(e => e.Position)
+                .HasColumnType("nvarchar(max)")
+                .HasConversion<string>();
         }
     }
 }

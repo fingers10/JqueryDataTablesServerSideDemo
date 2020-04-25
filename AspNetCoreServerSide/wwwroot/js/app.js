@@ -147,7 +147,7 @@ $(() => {
                 },
                 {
                     data: "Position",
-                    name: "eq"
+                    name: "co"
                 },
                 {
                     data: "Offices",
@@ -188,6 +188,12 @@ $(() => {
                 }
             ]
         });
+
+        //$("div.dataTables_filter input").off().on('keyup', function (e) {
+        //    if (e.keyCode === 13) {
+        //        table.search(this.value).draw();
+        //    }
+        //});
 
         table.columns().every(function (index) {
             $('#fingers10 thead tr:last th:eq(' + index + ') input')

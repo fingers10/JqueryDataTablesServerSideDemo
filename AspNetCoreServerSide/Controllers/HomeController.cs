@@ -1,12 +1,10 @@
 ﻿using AspNetCoreServerSide.Contracts;
 using AspNetCoreServerSide.Models;
-using AutoMapper;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.ActionResults;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -15,12 +13,10 @@ namespace AspNetCoreServerSide.Controllers
     public class HomeController : Controller
     {
         private readonly IDemoService _demoService;
-        private readonly IMapper _mapper;
 
-        public HomeController(IDemoService demoService, IMapper mapper)
+        public HomeController(IDemoService demoService)
         {
             _demoService = demoService;
-            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -53,6 +49,7 @@ namespace AspNetCoreServerSide.Controllers
         //{
         //    var results = await _demoService.GetDataAsync(param);
         //    return new JqueryDataTablesExcelResult<Demo>(results.Items, "Demo Sheet Name", "Fingers10");
+        //    return new JqueryDataTablesCSVResult<Demo>(results.Items, "Fingers10");
         //}
 
         [HttpPost]
@@ -83,7 +80,8 @@ namespace AspNetCoreServerSide.Controllers
             var param = HttpContext.Session.GetString(nameof(JqueryDataTablesParameters));
 
             var results = await _demoService.GetDataAsync(JsonSerializer.Deserialize<JqueryDataTablesParameters>(param));
-            return new JqueryDataTablesExcelResult<DemoExcel>(_mapper.Map<List<DemoExcel>>(results.Items), "Demo Sheet Name", "Fingers10");
+            return new JqueryDataTablesExcelResult<Demo>(results.Items, "Demo Sheet Name", "Fingers10");
+            //return new JqueryDataTablesCSVResult<Demo>(results.Items, "Fingers10");
         }
 
         [HttpPost]

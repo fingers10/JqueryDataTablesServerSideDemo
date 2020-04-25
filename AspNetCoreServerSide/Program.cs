@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace AspNetCoreServerSide
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            InitializeDatabase(host);
+            await InitializeDatabase(host);
             host.Run();
         }
 
@@ -26,13 +28,15 @@ namespace AspNetCoreServerSide
                     .UseStartup<Startup>();
                 });
 
-        private static void InitializeDatabase(IHost host)
+        private async static Task InitializeDatabase(IHost host)
         {
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
             try
             {
+                var finger10Context = services.GetRequiredService<Fingers10DbContext>();
+                await finger10Context.Database.MigrateAsync();
                 SeedData.InitializeAsync(services).Wait();
             }
             catch (Exception ex)

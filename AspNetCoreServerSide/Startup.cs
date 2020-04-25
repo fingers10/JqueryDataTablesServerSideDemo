@@ -22,7 +22,8 @@ namespace AspNetCoreServerSide
             services.AddDbContext<Fingers10DbContext>(
                 options =>
                 {
-                    options.UseInMemoryDatabase("fingers10db");
+                    //options.UseInMemoryDatabase("fingers10db");
+                    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=JqueryDataTablesAspNetServerSide;Trusted_Connection=True;MultipleActiveResultSets=true");
                 });
 
             services.AddControllersWithViews()
