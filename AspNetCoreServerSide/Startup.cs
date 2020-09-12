@@ -3,9 +3,13 @@ using AspNetCoreServerSide.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace AspNetCoreServerSide
@@ -26,13 +30,34 @@ namespace AspNetCoreServerSide
                     options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=JqueryDataTablesAspNetServerSide;Trusted_Connection=True;MultipleActiveResultSets=true");
                 });
 
+            // Set the languages you want to support in your app.
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var ciEn = new CultureInfo("en");
+                var ciFr = new CultureInfo("fr");
+                var supportedCultures = new List<CultureInfo>
+                {
+                    ciEn,
+                    ciFr
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+            services.AddPortableObjectLocalization(options => options.ResourcesPath = "wwwroot/lang");
+
             services.AddControllersWithViews()
                     //.AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
                     .AddJsonOptions(options =>
                     {
                         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                         options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    });
+                    })
+                    // Add those 2 functions to support localization
+                    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                    .AddDataAnnotationsLocalization();;
+                    
             services.AddSession();
             services.AddAutoMapper(typeof(Startup));
         }
@@ -48,6 +73,9 @@ namespace AspNetCoreServerSide
             app.UseRouting();
             app.UseStaticFiles();
             app.UseSession();
+            //To use the localization in your app
+            app.UseRequestLocalization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");

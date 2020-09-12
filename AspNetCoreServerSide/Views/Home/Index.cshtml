@@ -1,6 +1,18 @@
 ﻿@model AspNetCoreServerSide.Models.Demo
 @{
     Layout = null;
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+
+    var requestCulture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+    var langFileUrl = string.Empty;
+    if (requestCulture.RequestCulture.UICulture.Name == "en")
+    {
+        langFileUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
+    }
+    else
+    {
+        langFileUrl = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json";
+    }
 }
 
 <!DOCTYPE html>
@@ -20,20 +32,32 @@
 
     <div class="container">
         <div class="row">
+            <div class="col-4">
+                @Localizer["Choose your language"]
+            </div>
+             <div class="col-4">
+                <a href="@Url.Action("SetLanguage", "Home")?culture=en&returnUrl=@returnUrl" class="dropdown-item">English</a>
+            </div>
+             <div class="col-4">
+                <a href="@Url.Action("SetLanguage", "Home")?culture=fr&returnUrl=@returnUrl" class="dropdown-item">Français</a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-center align-content-center">
                     <div class="card">
                         <div class="card-header">
-                            <p class="text-center">Asp.Net Core - Jquery DataTables Server Side Multi Column Filtering And Ordering With Pagination And Excel Export Demo.</p>
+                            <p class="text-center">@Localizer["Asp.Net Core - Jquery DataTables Server Side Multi Column Filtering And Ordering With Pagination And Excel Export Demo."]</p>
                         </div>
                         <div class="card-body">
                             <div class="input-group mb-3">
-                                <input type="text" id="txtExternalSearch" class="form-control" placeholder="External Search" aria-label="External Search" aria-describedby="btnExternalSearch">
+                                <input type="text" id="txtExternalSearch" class="form-control" placeholder="@Localizer["External Search"]" aria-label="@Localizer["External Search"]" aria-describedby="btnExternalSearch">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="btnExternalSearch">Search</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="btnExternalSearch">@Localizer["Search"]</button>
                                 </div>
                             </div>
-                            <jquery-datatables id="fingers10"
+                            
+                            <jquery-datatables-html-localized id="fingers10"
                                                class="table table-sm table-dark table-bordered table-hover"
                                                model="@Model"
                                                thead-class="text-center"
@@ -43,13 +67,13 @@
                                                search-input-style=""
                                                search-input-placeholder-prefix="Search"
                                                use-property-type-as-input-type="false">
-                            </jquery-datatables>
+                            </jquery-datatables-html-localized>
 
                             <partial name="_Create" model="@(new Demo())" />
                             <div id="editPartial"></div>
                         </div>
                         <div class="card-footer">
-                            <p class="text-center">Demo By &copy; Fingers10 - Abdul Rahman.</p>
+                            <p class="text-center">@Localizer["Demo By"] &copy; Fingers10 - Abdul Rahman.</p>
                         </div>
                     </div>
                 </div>
@@ -63,6 +87,16 @@
     <script src="~/lib/datatables/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js" asp-append-version="true"></script>
     <script src="~/lib/datatables/js/dataTables.buttons.min.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        let langFileUrl = '@langFileUrl';
+        let exportToExcelText = '@Localizer["Export to Excel"]';
+        let createText = '@Localizer["Create"]';
+        let editText = '@Localizer["Edit"]';
+        let deleteText = '@Localizer["Delete"]';
+    </script>
     <script src="~/js/app.js" asp-append-version="true"></script>
+    <script>
+    
+    </script>
 </body>
 </html>

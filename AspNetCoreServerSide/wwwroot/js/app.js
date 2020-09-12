@@ -1,91 +1,10 @@
-﻿"use strict";
+﻿﻿"use strict";
 
 $(() => {
     if ($('#fingers10').length !== 0) {
-
-        //var table = $('#fingers10').DataTable({
-        //    language: {
-        //        processing: "Loading Data...",
-        //        zeroRecords: "No matching records found"
-        //    },
-        //    processing: true,
-        //    serverSide: true,
-        //    orderCellsTop: true,
-        //    autoWidth: true,
-        //    deferRender: true,
-        //    lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
-        //    dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-        //    buttons: [
-        //        {
-        //            text: 'Export to Excel',
-        //            className: 'btn btn-sm btn-dark',
-        //            action: function (e, dt, node, config) {
-        //                var data = table.ajax.params();
-        //                var x = JSON.stringify(data, null, 4);
-        //                window.location.href = "/Home/GetExcel?" + $.param(data);
-        //            },
-        //            init: function (api, node, config) {
-        //                $(node).removeClass('dt-button');
-        //            }
-        //        }
-        //    ],
-        //    ajax: {
-        //        url: '/Home/LoadTable/',
-        //        data: function (data) {
-        //            return $.extend({}, data, {
-        //                "additionalValues[0]": "Additional Parameters 1",
-        //                "additionalValues[1]": "Additional Parameters 2"
-        //            });
-        //        }
-        //    },
-        //    columns: [
-        //        {
-        //            data: "Id",
-        //            name: "eq",
-        //            visible: false,
-        //            searchable: false
-        //        },
-        //        {
-        //            data: "Name",
-        //            name: "co"
-        //        },
-        //        {
-        //            data: "Position",
-        //            name: "eq"
-        //        },
-        //        {
-        //            data: "Offices",
-        //            name: "eq"
-        //        },
-        //        {
-        //            data: "DemoNestedLevelOne.Experience",
-        //            name: "eq"
-        //        },
-        //        {
-        //            data: "DemoNestedLevelOne.Extension",
-        //            name: "eq"
-        //        },
-        //        {
-        //            data: "DemoNestedLevelOne.DemoNestedLevelTwos.StartDates",
-        //            render: function (data, type, row) {
-        //                if (data)
-        //                    return window.moment(data).format("DD/MM/YYYY");
-        //                else
-        //                    return null;
-        //            },
-        //            name: "gt"
-        //        },
-        //        {
-        //            data: "DemoNestedLevelOne.DemoNestedLevelTwos.Salary",
-        //            name: "lte"
-        //        }
-        //    ]
-        //});
-
         var table = $('#fingers10').DataTable({
-            language: {
-                processing: "Loading Data...",
-                zeroRecords: "No matching records found"
+             language: {
+                url: langFileUrl
             },
             processing: true,
             serverSide: true,
@@ -96,7 +15,7 @@ $(() => {
             dom: '<"row"<"col-sm-12 col-md-6"B><"col-sm-12 col-md-6 text-right"l>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
             buttons: [
                 {
-                    text: 'Export to Excel',
+                    text: exportToExcelText,
                     className: 'btn btn-sm btn-dark',
                     action: function (e, dt, node, config) {
                         window.location.href = "/Home/GetExcel";
@@ -106,7 +25,7 @@ $(() => {
                     }
                 },
                 {
-                    text: 'Create',
+                    text: createText,
                     className: 'btn btn-sm btn-success',
                     action: function (e, dt, node, config) {
                         $('#createModal').modal('show');
@@ -181,19 +100,13 @@ $(() => {
                     data: "DemoNestedLevelOne.DemoNestedLevelTwos.Action",
                     render: function (data, type, row) {
                         return `<div>
-                                    <button type="button" class="btn btn-sm btn-info mr-2 btnEdit" data-key="${row.Id}">Edit</button>
-                                    <button type="button" class="btn btn-sm btn-danger btnDelete" data-key="${row.Id}">Delete</button>
+                                    <button type="button" class="btn btn-sm btn-info mr-2 btnEdit" data-key="${row.Id}">${editText}</button>
+                                    <button type="button" class="btn btn-sm btn-danger btnDelete" data-key="${row.Id}">${deleteText}</button>
                                 </div>`;
                     }
                 }
             ]
         });
-
-        //$("div.dataTables_filter input").off().on('keyup', function (e) {
-        //    if (e.keyCode === 13) {
-        //        table.search(this.value).draw();
-        //    }
-        //});
 
         table.columns().every(function (index) {
             $('#fingers10 thead tr:last th:eq(' + index + ') input')
